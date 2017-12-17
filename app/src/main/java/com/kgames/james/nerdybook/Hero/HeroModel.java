@@ -4,7 +4,7 @@ package com.kgames.james.nerdybook.Hero;
  * Created by james on 17/12/17.
  */
 
-public class HeroModel {
+public class HeroModel extends DatabaseContract.HeroEntry {
 
     private String ID;
 
@@ -21,6 +21,25 @@ public class HeroModel {
     private String luckMax;
     private String luckCurrent;
 
+
+    public HeroModel() { }
+
+    public HeroModel(String ID, String adventure, String difficulty,
+                     String name, String gender, String abilityMax,
+                     String abilityCurrent, String staminaMax,
+                     String staminaCurrent, String luckMax, String luckCurrent) {
+        this.ID = ID;
+        this.adventure = adventure;
+        this.difficulty = difficulty;
+        this.name = name;
+        this.gender = gender;
+        this.abilityMax = abilityMax;
+        this.abilityCurrent = abilityCurrent;
+        this.staminaMax = staminaMax;
+        this.staminaCurrent = staminaCurrent;
+        this.luckMax = luckMax;
+        this.luckCurrent = luckCurrent;
+    }
 
     public String getID() {
         return ID;

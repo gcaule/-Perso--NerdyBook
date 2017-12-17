@@ -70,6 +70,25 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/saved_difficulty"
+            android:text="@string/saved_difficulty"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/saved_difficulty_value"
+            tool:text="@string/saved_difficulty_hint"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/saved_ability"
             android:text="@string/hero_ability"/>
 
@@ -102,6 +121,26 @@
             android:layout_height="wrap_content"
             android:id="@+id/saved_luck_value"
             android:text="@string/saved_stats"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/load_saved_games"
+            android:text="@string/load_saved_game"
+            android:layout_weight="1"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/delete_saved_games"
+            android:text="@string/delete_saved_game"
+            android:layout_weight="1"/>
 
     </LinearLayout>
 

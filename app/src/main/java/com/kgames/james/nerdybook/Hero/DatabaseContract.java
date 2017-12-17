@@ -12,7 +12,7 @@ public class DatabaseContract {
 
     public static class HeroEntry implements BaseColumns {
         public static final String TABLE_NAME = "Hero";
-        public static final String COLUMN_ID = "id";
+        public static final String COLUMN_ID = "ID";
 
         public static final String COLUMN_ADVENTURE = "adventure";
         public static final String COLUMN_DIFFICULTY = "difficulty";

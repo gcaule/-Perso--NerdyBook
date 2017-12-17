@@ -26,11 +26,23 @@
 
     <string name="saved_adventure">Aventure en cours :\u0020</string>
     <string name="saved_adventure_hint">Nom de l\'aventure</string>
-    <string name="saved_chapters">Chapitres lus</string>
+    <string name="saved_chapters">Chapitres lus :\u0020</string>
     <string name="saved_chapters_hint">000</string>
+
+    <string name="saved_difficulty">Difficulté : \u0020</string>
+    <string name="saved_difficulty_hint">Facile / Normal</string>
 
     <string name="saved_gender">Héros / Héroïne</string>
     <string name="saved_stats">00 (00)</string>
+
+    <string name="load_saved_game">Continuer cette aventure !</string>
+    <string name="delete_saved_game">Supprimer cette aventure !</string>
+
+    <string name="delete_dialog_title">Horreur, malheur, brocolis !</string>
+    <string name="delete_dialog_message">Cette aventure va disparaître dans le Néant,
+        et tout ce qui y a été accompli ne sera jamais chanté par les troubadours de tous horizons !!!</string>
+    <string name="delete_dialog_yes">Tant mieux, ça nous fera des vacances...</string>
+    <string name="delete_dialog_no">NOOOOON !!! Tout, mais pas le Néant !!!</string>
 
     <!-- Difficulty settings -->
     <string name="choose_difficulty">Choisir une difficulté de jeu</string>
