@@ -19,6 +19,7 @@ import com.kgames.james.nerdybook.Hero.HeroDBHelper;
 
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_ABILITY_CURRENT;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_ABILITY_MAX;
+import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_ADVENTURE;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_DIFFICULTY;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_LUCK_CURRENT;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_LUCK_MAX;
@@ -32,6 +33,7 @@ public class HeroCreation extends AppCompatActivity {
     HeroDBHelper mDbHelper;
 
     String mDifficulty;
+    String mAdventure;
     String mHeroName;
     String mHeroGender;
 
@@ -47,8 +49,7 @@ public class HeroCreation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hero_creation);
 
-        mDbHelper = new HeroDBHelper(HeroCreation.this);
-        final String heroID = getIntent().getExtras().getString("HeroID");
+        mAdventure = getIntent().getExtras().getString("Adventure");
 
         final EditText heroNameEntry = findViewById(R.id.hero_name_value);
 
@@ -179,11 +180,13 @@ public class HeroCreation extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                SQLiteDatabase db = mDbHelper.getReadableDatabase();
+                mDbHelper = new HeroDBHelper(HeroCreation.this);
+                SQLiteDatabase db = mDbHelper.getWritableDatabase();
                 // Define a projection that specifies which columns from the database
                 // you will actually use after this query.
                 String[] projection = {
                         DatabaseContract.HeroEntry.COLUMN_DIFFICULTY,
+                        DatabaseContract.HeroEntry.COLUMN_ADVENTURE,
                         DatabaseContract.HeroEntry.COLUMN_PLAYER_NAME,
                         DatabaseContract.HeroEntry.COLUMN_PLAYER_GENDER,
                         DatabaseContract.HeroEntry.COLUMN_ABILITY_MAX,
@@ -197,10 +200,10 @@ public class HeroCreation extends AppCompatActivity {
                 Cursor cursor = db.query(
                         DatabaseContract.HeroEntry.TABLE_NAME,   // The table to query
                         projection,                              // The columns to return
-                        heroID,                                  // The columns for the WHERE clause
+                        null,                           // The columns for the WHERE clause
                         null,                        // The values for the WHERE clause
-                        null,                            // don't group the rows
-                        null,                             // don't filter by row groups
+                        null,                            // Don't group the rows
+                        null,                             // Don't filter by row groups
                         null                             // The sort order
                 );
 
@@ -208,6 +211,7 @@ public class HeroCreation extends AppCompatActivity {
                     SQLiteDatabase database = mDbHelper.getWritableDatabase();
                     ContentValues contentValues = new ContentValues();
                     contentValues.put(COLUMN_DIFFICULTY, mDifficulty);
+                    contentValues.put(COLUMN_ADVENTURE, mAdventure);
                     contentValues.put(COLUMN_PLAYER_NAME, mHeroName);
                     contentValues.put(COLUMN_PLAYER_GENDER, mHeroGender);
                     contentValues.put(COLUMN_ABILITY_MAX, mAbilityMax);
@@ -221,7 +225,6 @@ public class HeroCreation extends AppCompatActivity {
                 cursor.close();
 
                 Intent intent = new Intent(HeroCreation.this, Adventure.class);
-                intent.putExtra("HeroID", heroID);
                 startActivity(intent);
             }
         });

@@ -30,15 +30,8 @@ public class AdventureSelection extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                mDbHelper = new HeroDBHelper(AdventureSelection.this);
-
-                SQLiteDatabase database = mDbHelper.getWritableDatabase();
-                ContentValues contentValues = new ContentValues();
-                contentValues.put(COLUMN_ADVENTURE, String.valueOf(R.string.adventure_talisman_of_death));
-                long newRowId = database.insert(DatabaseContract.HeroEntry.TABLE_NAME, null, contentValues);
-
                 Intent intent = new Intent(AdventureSelection.this, HeroCreation.class);
-                intent.putExtra("HeroID", newRowId);
+                intent.putExtra("Adventure", startTalisman.getText());
                 startActivity(intent);
             }
         });
