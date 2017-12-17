@@ -46,20 +46,6 @@ public class HeroDBHelper extends SQLiteOpenHelper {
         return db.delete(TABLE_NAME, COLUMN_ID + "=?", new String[]{String.valueOf(id)}) == 1;
     }
 
-    boolean isTableEmpty() {
-
-        SQLiteDatabase db = getReadableDatabase();
-        Cursor mCursor = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
-        Boolean tableIsEmpty;
-
-        if (mCursor.moveToFirst()) {
-            tableIsEmpty = true;
-
-        } else {
-            tableIsEmpty = false;
-        }
-        return tableIsEmpty;
-    }
 
     @Override
     public void onCreate(SQLiteDatabase db) {

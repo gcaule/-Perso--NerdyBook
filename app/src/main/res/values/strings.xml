@@ -46,9 +46,11 @@
 
     <!-- Difficulty settings -->
     <string name="choose_difficulty">Choisir une difficulté de jeu</string>
-    <string name="easy_difficulty">Facile</string>
-    <string name="normal_difficulty">Normal</string>
     <string name="adventure_validate_difficulty">Valider la difficulté !</string>
+    <string name="easy_difficulty">Facile</string>
+    <string name="easy_difficulty_sql">Facile</string>
+    <string name="normal_difficulty">Normal</string>
+    <string name="normal_difficulty_sql">Normal</string>
 
     <!-- Hero name -->
     <string name="hero_name">Nom du Héros :\u0020</string>
@@ -72,11 +74,13 @@
     <string name="hero_ability_hint_male">Habileté du Héros</string>
     <string name="hero_stamina_hint_male">Endurance du Héros</string>
     <string name="hero_luck_hint_male">Chance du Héros</string>
+    <string name="hero_male_sql">Homme</string>
 
     <!-- Female Hero -->
     <string name="hero_ability_hint_female">Habileté de l\'Héroïne</string>
     <string name="hero_stamina_hint_female">Endurance de l\'Héroïne</string>
     <string name="hero_luck_hint_female">Chance de l\'Héroïne</string>
+    <string name="hero_female_sql">Femme</string>
 
 
 </resources>

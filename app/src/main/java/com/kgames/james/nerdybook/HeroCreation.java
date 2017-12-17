@@ -2,7 +2,6 @@ package com.kgames.james.nerdybook;
 
 import android.content.ContentValues;
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -181,48 +180,20 @@ public class HeroCreation extends AppCompatActivity {
             public void onClick(View view) {
 
                 mDbHelper = new HeroDBHelper(HeroCreation.this);
-                SQLiteDatabase db = mDbHelper.getWritableDatabase();
-                // Define a projection that specifies which columns from the database
-                // you will actually use after this query.
-                String[] projection = {
-                        DatabaseContract.HeroEntry.COLUMN_DIFFICULTY,
-                        DatabaseContract.HeroEntry.COLUMN_ADVENTURE,
-                        DatabaseContract.HeroEntry.COLUMN_PLAYER_NAME,
-                        DatabaseContract.HeroEntry.COLUMN_PLAYER_GENDER,
-                        DatabaseContract.HeroEntry.COLUMN_ABILITY_MAX,
-                        DatabaseContract.HeroEntry.COLUMN_ABILITY_CURRENT,
-                        DatabaseContract.HeroEntry.COLUMN_STAMINA_MAX,
-                        DatabaseContract.HeroEntry.COLUMN_STAMINA_CURRENT,
-                        DatabaseContract.HeroEntry.COLUMN_LUCK_MAX,
-                        DatabaseContract.HeroEntry.COLUMN_LUCK_CURRENT
-                };
+                SQLiteDatabase database = mDbHelper.getWritableDatabase();
 
-                Cursor cursor = db.query(
-                        DatabaseContract.HeroEntry.TABLE_NAME,   // The table to query
-                        projection,                              // The columns to return
-                        null,                           // The columns for the WHERE clause
-                        null,                        // The values for the WHERE clause
-                        null,                            // Don't group the rows
-                        null,                             // Don't filter by row groups
-                        null                             // The sort order
-                );
-
-                while(cursor.moveToNext()) {
-                    SQLiteDatabase database = mDbHelper.getWritableDatabase();
-                    ContentValues contentValues = new ContentValues();
-                    contentValues.put(COLUMN_DIFFICULTY, mDifficulty);
-                    contentValues.put(COLUMN_ADVENTURE, mAdventure);
-                    contentValues.put(COLUMN_PLAYER_NAME, mHeroName);
-                    contentValues.put(COLUMN_PLAYER_GENDER, mHeroGender);
-                    contentValues.put(COLUMN_ABILITY_MAX, mAbilityMax);
-                    contentValues.put(COLUMN_ABILITY_CURRENT, mAbilityCurrent);
-                    contentValues.put(COLUMN_STAMINA_MAX, mStaminaMax);
-                    contentValues.put(COLUMN_STAMINA_CURRENT, mStaminaCurrent);
-                    contentValues.put(COLUMN_LUCK_MAX, mLuckMax);
-                    contentValues.put(COLUMN_LUCK_CURRENT, mLuckCurrent);
-                    database.insert(DatabaseContract.HeroEntry.TABLE_NAME, null, contentValues);
-                }
-                cursor.close();
+                ContentValues contentValues = new ContentValues();
+                contentValues.put(COLUMN_ADVENTURE, mAdventure);
+                contentValues.put(COLUMN_DIFFICULTY, mDifficulty);
+                contentValues.put(COLUMN_PLAYER_NAME, mHeroName);
+                contentValues.put(COLUMN_PLAYER_GENDER, mHeroGender);
+                contentValues.put(COLUMN_ABILITY_MAX, mAbilityMax);
+                contentValues.put(COLUMN_ABILITY_CURRENT, mAbilityCurrent);
+                contentValues.put(COLUMN_STAMINA_MAX, mStaminaMax);
+                contentValues.put(COLUMN_STAMINA_CURRENT, mStaminaCurrent);
+                contentValues.put(COLUMN_LUCK_MAX, mLuckMax);
+                contentValues.put(COLUMN_LUCK_CURRENT, mLuckCurrent);
+                database.insert(DatabaseContract.HeroEntry.TABLE_NAME, null, contentValues);
 
                 Intent intent = new Intent(HeroCreation.this, Adventure.class);
                 startActivity(intent);
@@ -256,7 +227,7 @@ public class HeroCreation extends AppCompatActivity {
 
                 if (maleHero.isChecked()) {
                     femaleHero.setChecked(false);
-                    mHeroGender = "MaleHero";
+                    mHeroGender = getString(R.string.hero_male_sql);
 
                     if (abilityDices.isEnabled()) {
                         heroAbility.setText(R.string.hero_ability_hint_male);
@@ -273,7 +244,7 @@ public class HeroCreation extends AppCompatActivity {
                 } else {
 
                     maleHero.setChecked(false);
-                    mHeroGender = "FemaleHero";
+                    mHeroGender = getString(R.string.hero_female_sql);
 
                     if(abilityDices.isEnabled()) {
                         heroAbility.setText(R.string.hero_ability_hint_female);
@@ -329,11 +300,11 @@ public class HeroCreation extends AppCompatActivity {
 
                 if (easyDifficulty.isChecked()) {
                     normalDifficulty.setChecked(false);
-                    mDifficulty = "Easy";
+                    mDifficulty = getString(R.string.easy_difficulty_sql);
 
                 } else {
                     easyDifficulty.setChecked(false);
-                    mDifficulty = "Normal";
+                    mDifficulty = getString(R.string.normal_difficulty_sql);
 
                 }
 

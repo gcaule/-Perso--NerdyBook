@@ -2,6 +2,7 @@ package com.kgames.james.nerdybook.Hero;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.kgames.james.nerdybook.MainMenu;
 import com.kgames.james.nerdybook.R;
 
 import java.util.List;
@@ -24,10 +26,8 @@ public class HeroAdapter extends ArrayAdapter<HeroModel> {
     int layoutRes;
     List<HeroModel> mHeroList;
 
-    //the databasemanager object
     HeroDBHelper mDBHelper;
 
-    //modified the constructor and we are taking the DatabaseManager instance here
     public HeroAdapter(Context mContext, int layoutRes, List<HeroModel> mHeroList, HeroDBHelper mDBHelper) {
         super(mContext, layoutRes, mHeroList);
 
@@ -63,7 +63,7 @@ public class HeroAdapter extends ArrayAdapter<HeroModel> {
         }
 
 
-        final HeroModel heroModel = (HeroModel) mHeroList.get(position);
+        final HeroModel heroModel = mHeroList.get(position);
 
         viewHolder.savedHeroName.setText(heroModel.getName());
         viewHolder.savedHeroGender.setText(heroModel.getGender());
@@ -85,8 +85,14 @@ public class HeroAdapter extends ArrayAdapter<HeroModel> {
             @Override
             public void onClick(View view) {
                 deleteHero(heroModel);
+
             }
         });
+
+        if (mHeroList.size() == 0) {
+            Intent intent = new Intent(getContext(), MainMenu.class);
+            getContext().startActivity(intent);
+        }
 
         return convertView;
     }
@@ -135,10 +141,10 @@ public class HeroAdapter extends ArrayAdapter<HeroModel> {
     }
 
     private void loadHeroesFromDatabaseAgain() {
-        //calling the read method from database instance
-        Cursor cursor = mDBHelper.getAllHeroes();
 
+        Cursor cursor = mDBHelper.getAllHeroes();
         mHeroList.clear();
+
         if (cursor.moveToFirst()) {
             do {
                 mHeroList.add(new HeroModel(
