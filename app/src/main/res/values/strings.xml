@@ -1,0 +1,70 @@
+<resources>
+
+    <string name="app_name">NerdyBooK</string>
+
+    <!-- Rool the dices -->
+    <string name="roll_the_dices">Lancer les dés !</string>
+    <string name="start_adventure">Démarrer l\'aventure !</string>
+
+    <!-- Main Menu -->
+    <string name="menu_description">L\'application dont VOUS êtes le Héros.</string>
+    <string name="menu_start">Commencer une nouvelle aventure !</string>
+    <string name="menu_continue">Continuer une aventure !</string>
+
+    <!-- Adventure Selection -->
+    <string name="adventure_selection">Choisir une aventure</string>
+
+    <string name="adventure_talisman_of_death">Le Talisman de la Mort</string>
+    <string name="adventure_marks_of_mayhem">Les Sceaux de la Destruction</string>
+
+    <string name="adventure_coming_soon">Prochainement disponible !</string>
+
+    <!-- Saved Games -->
+    <string name="no_saved_games">Aucune sauvegarde trouvée !</string>
+    <string name="saved_games_title">Choisir une sauvegarde</string>
+    <string name="saved_games_validate">Continuer cette aventure</string>
+
+    <string name="saved_adventure">Aventure en cours :\u0020</string>
+    <string name="saved_adventure_hint">Nom de l\'aventure</string>
+    <string name="saved_chapters">Chapitres lus</string>
+    <string name="saved_chapters_hint">000</string>
+
+    <string name="saved_gender">Héros / Héroïne</string>
+    <string name="saved_stats">00 (00)</string>
+
+    <!-- Difficulty settings -->
+    <string name="choose_difficulty">Choisir une difficulté de jeu</string>
+    <string name="easy_difficulty">Facile</string>
+    <string name="normal_difficulty">Normal</string>
+    <string name="adventure_validate_difficulty">Valider la difficulté !</string>
+
+    <!-- Hero name -->
+    <string name="hero_name">Nom du Héros :\u0020</string>
+    <string name="hero_name_hint">Nom du Héros</string>
+    <string name="hero_name_empty">Entrez un nom !</string>
+    <string name="hero_name_create">Valider ce nom !</string>
+
+    <!-- Hero stats -->
+    <string name="hero_male">Mon Héros est un homme.</string>
+    <string name="hero_female">Mon héros est une femme.</string>
+
+    <string name="hero_ability">Habileté :\u0020</string>
+    <string name="hero_stamina">Endurance :\u0020</string>
+    <string name="hero_luck">Chance :\u0020</string>
+
+    <!-- Gender choice -->
+    <string name="hero_gender_hint">Choisir un genre</string>
+    <string name="hero_validate_gender">Valider ce genre !</string>
+
+    <!-- Male Hero -->
+    <string name="hero_ability_hint_male">Habileté du Héros</string>
+    <string name="hero_stamina_hint_male">Endurance du Héros</string>
+    <string name="hero_luck_hint_male">Chance du Héros</string>
+
+    <!-- Female Hero -->
+    <string name="hero_ability_hint_female">Habileté de l\'Héroïne</string>
+    <string name="hero_stamina_hint_female">Endurance de l\'Héroïne</string>
+    <string name="hero_luck_hint_female">Chance de l\'Héroïne</string>
+
+
+</resources>
