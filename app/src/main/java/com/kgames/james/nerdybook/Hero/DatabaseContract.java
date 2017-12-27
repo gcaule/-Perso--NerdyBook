@@ -26,6 +26,9 @@ public class DatabaseContract {
         public static final String COLUMN_STAMINA_CURRENT = "staminaCurrent";
         public static final String COLUMN_LUCK_MAX = "luckMax";
         public static final String COLUMN_LUCK_CURRENT = "luckCurrent";
+
+        public static final String COLUMN_CURRENT_CHAPTER = "currentChapter";
+        public static final String COLUMN_TOTAL_CHAPTERS = "totalChapters";
     }
 
     public static final String SQL_DELETE_HERO =
