@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.kgames.james.nerdybook.AdventureTalisman;
 import com.kgames.james.nerdybook.MainMenu;
 import com.kgames.james.nerdybook.R;
 
@@ -53,6 +54,7 @@ public class HeroAdapter extends ArrayAdapter<HeroModel> {
             viewHolder.savedHeroGender = convertView.findViewById(R.id.saved_hero_gender);
 
             viewHolder.savedAdventure = convertView.findViewById(R.id.saved_adventure_value);
+            viewHolder.savedTotalChapters = convertView.findViewById(R.id.saved_chapters_value);
             viewHolder.savedDifficulty = convertView.findViewById(R.id.saved_difficulty_value);
 
             viewHolder.savedAbility = convertView.findViewById(R.id.saved_ability_value);
@@ -69,6 +71,7 @@ public class HeroAdapter extends ArrayAdapter<HeroModel> {
         viewHolder.savedHeroGender.setText(heroModel.getGender());
 
         viewHolder.savedAdventure.setText(heroModel.getAdventure());
+        viewHolder.savedTotalChapters.setText(heroModel.getTotalChapters());
         viewHolder.savedDifficulty.setText(heroModel.getDifficulty());
 
         viewHolder.savedAbility.setText(String.format("%s(%s)", heroModel.getAbilityCurrent(), heroModel.getAbilityMax()));
@@ -78,6 +81,11 @@ public class HeroAdapter extends ArrayAdapter<HeroModel> {
         convertView.findViewById(R.id.load_saved_games).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(getContext(), AdventureTalisman.class);
+                intent.putExtra("HeroID", heroModel.getID());
+                intent.putExtra("CurrentChapter", heroModel.getCurrentChapter());
+                intent.putExtra("TotalChapters", heroModel.getTotalChapters());
+                getContext().startActivity(intent);
             }
         });
 
@@ -103,6 +111,7 @@ public class HeroAdapter extends ArrayAdapter<HeroModel> {
         public TextView savedHeroGender;
 
         public TextView savedAdventure;
+        public TextView savedTotalChapters;
         public TextView savedDifficulty;
 
         public TextView savedAbility;
@@ -158,7 +167,9 @@ public class HeroAdapter extends ArrayAdapter<HeroModel> {
                         cursor.getString(7),
                         cursor.getString(8),
                         cursor.getString(9),
-                        cursor.getString(10)
+                        cursor.getString(10),
+                        cursor.getString(11),
+                        cursor.getString(12)
                 ));
             } while (cursor.moveToNext());
         }
