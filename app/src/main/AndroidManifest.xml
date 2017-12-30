@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".HeroCreation" />
-        <activity android:name=".Adventure" />
+        <activity android:name=".AdventureTalisman" />
         <activity android:name=".AdventureSelection" />
         <activity android:name=".SavedGames"></activity>
     </application>

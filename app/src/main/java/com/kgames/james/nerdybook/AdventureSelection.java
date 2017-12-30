@@ -22,7 +22,7 @@ public class AdventureSelection extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent intent = new Intent(AdventureSelection.this, HeroCreation.class);
-                intent.putExtra("Adventure", startTalisman.getText());
+                intent.putExtra("AdventureTalisman", startTalisman.getText());
                 startActivity(intent);
             }
         });
