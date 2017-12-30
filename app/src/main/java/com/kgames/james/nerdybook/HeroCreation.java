@@ -19,6 +19,7 @@ import com.kgames.james.nerdybook.Hero.HeroDBHelper;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_ABILITY_CURRENT;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_ABILITY_MAX;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_ADVENTURE;
+import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_CURRENT_CHAPTER;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_DIFFICULTY;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_LUCK_CURRENT;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_LUCK_MAX;
@@ -26,6 +27,7 @@ import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_PLAYER_NAME;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_STAMINA_CURRENT;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_STAMINA_MAX;
+import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_TOTAL_CHAPTERS;
 
 public class HeroCreation extends AppCompatActivity {
 
@@ -48,7 +50,7 @@ public class HeroCreation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hero_creation);
 
-        mAdventure = getIntent().getExtras().getString("Adventure");
+        mAdventure = getIntent().getExtras().getString("AdventureTalisman");
 
         final EditText heroNameEntry = findViewById(R.id.hero_name_value);
 
@@ -193,9 +195,14 @@ public class HeroCreation extends AppCompatActivity {
                 contentValues.put(COLUMN_STAMINA_CURRENT, mStaminaCurrent);
                 contentValues.put(COLUMN_LUCK_MAX, mLuckMax);
                 contentValues.put(COLUMN_LUCK_CURRENT, mLuckCurrent);
-                database.insert(DatabaseContract.HeroEntry.TABLE_NAME, null, contentValues);
+                contentValues.put(COLUMN_CURRENT_CHAPTER, "0");
+                contentValues.put(COLUMN_TOTAL_CHAPTERS, "0");
+                long heroID = database.insert(DatabaseContract.HeroEntry.TABLE_NAME, null, contentValues);
 
-                Intent intent = new Intent(HeroCreation.this, Adventure.class);
+                Intent intent = new Intent(HeroCreation.this, AdventureTalisman.class);
+                intent.putExtra("HeroID", String.valueOf(heroID));
+                intent.putExtra("CurrentChapter", "0");
+                intent.putExtra("TotalChapters", "0");
                 startActivity(intent);
             }
         });

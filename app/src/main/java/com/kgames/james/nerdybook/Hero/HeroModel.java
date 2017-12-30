@@ -21,13 +21,17 @@ public class HeroModel extends DatabaseContract.HeroEntry {
     private String luckMax;
     private String luckCurrent;
 
+    private String currentChapter;
+    private String totalChapters;
+
 
     public HeroModel() { }
 
     public HeroModel(String ID, String adventure, String difficulty,
                      String name, String gender, String abilityMax,
                      String abilityCurrent, String staminaMax,
-                     String staminaCurrent, String luckMax, String luckCurrent) {
+                     String staminaCurrent, String luckMax, String luckCurrent,
+                     String currentChapter, String totalChapters) {
         this.ID = ID;
         this.adventure = adventure;
         this.difficulty = difficulty;
@@ -39,6 +43,8 @@ public class HeroModel extends DatabaseContract.HeroEntry {
         this.staminaCurrent = staminaCurrent;
         this.luckMax = luckMax;
         this.luckCurrent = luckCurrent;
+        this.currentChapter = currentChapter;
+        this.totalChapters = totalChapters;
     }
 
     public String getID() {
@@ -137,6 +143,24 @@ public class HeroModel extends DatabaseContract.HeroEntry {
 
     public void setLuckCurrent(String luckCurrent) {
         this.luckCurrent = luckCurrent;
+    }
+
+
+    public String getCurrentChapter() {
+        return currentChapter;
+    }
+
+    public void setCurrentChapter(String currentChapter) {
+        this.currentChapter = currentChapter;
+    }
+
+
+    public String getTotalChapters() {
+        return totalChapters;
+    }
+
+    public void setTotalChapters(String totalChapters) {
+        this.totalChapters = totalChapters;
     }
 
 }

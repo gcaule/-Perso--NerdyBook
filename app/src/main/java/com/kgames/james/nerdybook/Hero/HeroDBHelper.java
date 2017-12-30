@@ -1,11 +1,14 @@
 package com.kgames.james.nerdybook.Hero;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_CURRENT_CHAPTER;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_ID;
+import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_TOTAL_CHAPTERS;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.TABLE_NAME;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.SQL_DELETE_HERO;
 
@@ -30,15 +33,30 @@ public class HeroDBHelper extends SQLiteOpenHelper {
                     DatabaseContract.HeroEntry.COLUMN_STAMINA_MAX + " TEXT," +
                     DatabaseContract.HeroEntry.COLUMN_STAMINA_CURRENT + " TEXT," +
                     DatabaseContract.HeroEntry.COLUMN_LUCK_MAX + " TEXT," +
-                    DatabaseContract.HeroEntry.COLUMN_LUCK_CURRENT + " TEXT);";
+                    DatabaseContract.HeroEntry.COLUMN_LUCK_CURRENT + " TEXT," +
+                    DatabaseContract.HeroEntry.COLUMN_CURRENT_CHAPTER + " TEXT," +
+                    DatabaseContract.HeroEntry.COLUMN_TOTAL_CHAPTERS + " TEXT);";
 
     public HeroDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+    public HeroDBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+        super(context, name, factory, version);
+    }
+
     public Cursor getAllHeroes() {
         SQLiteDatabase db = getReadableDatabase();
         return db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
+    }
+
+    public void updateChapters(String heroID, String currentChapter, String totalChapters) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_CURRENT_CHAPTER, currentChapter);
+        contentValues.put(COLUMN_TOTAL_CHAPTERS, totalChapters);
+        db.update(TABLE_NAME, contentValues, COLUMN_ID + " = ?", new String[]{heroID});
+        db.close();
     }
 
     boolean deleteHero(int id) {
