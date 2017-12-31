@@ -16,6 +16,7 @@ public class AdventureTalisman extends AppCompatActivity {
     int mCurrentChapter;
     int mTotalChapters;
     int mStatLoss;
+    int mStatCurrent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -253,31 +254,55 @@ public class AdventureTalisman extends AppCompatActivity {
 
                                 if (mCurrentChapter == 41) {
 
-                                    choice1.setVisibility(View.VISIBLE);
-                                    choice2.setVisibility(View.GONE);
-                                    choice3.setVisibility(View.GONE);
-                                    choice4.setVisibility(View.GONE);
-
                                     statsLoss.setVisibility(View.VISIBLE);
 
                                     mStatLoss = 2;
-                                    statsLoss.setText(String.format(getString(R.string.hero_stamina_loss), String.valueOf(mStatLoss)));
+                                    mStatCurrent = mHeroDBHelper.currentStamina(mHeroID);
 
-                                    adventureContent.setText(getString(R.string.talisman_chapter41));
-                                    choice1.setText(R.string.talisman_chapter41_choice1);
+                                    if (mStatCurrent - mStatLoss < 0) {
 
-                                    choice1.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View view) {
+                                        statsLoss.setText(getString(R.string.hero_stamina_null));
 
-                                            mHeroDBHelper.currentStaminaLoss(mHeroID, mStatLoss);
+                                        choice1.setVisibility(View.VISIBLE);
+                                        choice2.setVisibility(View.GONE);
+                                        choice3.setVisibility(View.GONE);
+                                        choice4.setVisibility(View.GONE);
 
-                                            mCurrentChapter = 13;
-                                            mTotalChapters = mTotalChapters + 1;
-                                            mHeroDBHelper.updateChapters(mHeroID, mCurrentChapter, mTotalChapters);
+                                        choice1.setText(getString(R.string.hero_death));
 
-                                        }
-                                    });
+                                        choice1.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View view) {
+
+                                            }
+                                        });
+
+                                    } else {
+
+                                        choice1.setVisibility(View.VISIBLE);
+                                        choice2.setVisibility(View.GONE);
+                                        choice3.setVisibility(View.GONE);
+                                        choice4.setVisibility(View.GONE);
+
+                                        statsLoss.setText(String.format(getString(R.string.hero_stamina_loss),
+                                                String.valueOf(mStatLoss), String.valueOf(mStatCurrent - mStatLoss)));
+
+                                        adventureContent.setText(getString(R.string.talisman_chapter41));
+                                        choice1.setText(R.string.talisman_chapter41_choice1);
+
+                                        choice1.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View view) {
+
+                                                mHeroDBHelper.currentStaminaLoss(mHeroID, mStatLoss);
+
+                                                mCurrentChapter = 13;
+                                                mTotalChapters = mTotalChapters + 1;
+                                                mHeroDBHelper.updateChapters(mHeroID, mCurrentChapter, mTotalChapters);
+
+                                            }
+                                        });
+                                    }
 
                                 }
 

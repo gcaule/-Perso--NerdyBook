@@ -62,11 +62,25 @@ public class HeroDBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void currentStaminaLoss(String heroID, int currentStaminaLoss) {
-
+    public int currentStamina(String heroID) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT " + COLUMN_STAMINA_CURRENT +
                 " FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + heroID, null);
+
+        if (cursor.moveToFirst()) {
+            mCurrentStamina = cursor.getInt(cursor.getColumnIndex(COLUMN_STAMINA_CURRENT));
+            cursor.close();
+        }
+
+        db.close();
+        return mCurrentStamina;
+    }
+
+    public void currentStaminaLoss(String heroID, int currentStaminaLoss) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT " + COLUMN_STAMINA_CURRENT +
+                " FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + heroID, null);
+
         if (cursor.moveToFirst()) {
             mCurrentStamina = cursor.getInt(cursor.getColumnIndex(COLUMN_STAMINA_CURRENT));
             cursor.close();
