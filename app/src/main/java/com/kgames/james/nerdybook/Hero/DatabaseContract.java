@@ -18,7 +18,6 @@ public class DatabaseContract {
         public static final String COLUMN_DIFFICULTY = "difficulty";
 
         public static final String COLUMN_PLAYER_NAME = "name";
-        public static final String COLUMN_PLAYER_GENDER = "gender";
 
         public static final String COLUMN_ABILITY_MAX = "abilityMax";
         public static final String COLUMN_ABILITY_CURRENT = "abilityCurrent";

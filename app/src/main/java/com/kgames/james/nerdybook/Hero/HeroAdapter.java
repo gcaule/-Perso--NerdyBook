@@ -51,7 +51,6 @@ public class HeroAdapter extends ArrayAdapter<HeroModel> {
             viewHolder = new SavedGamesViewHolder();
 
             viewHolder.savedHeroName = convertView.findViewById(R.id.saved_hero_value);
-            viewHolder.savedHeroGender = convertView.findViewById(R.id.saved_hero_gender);
 
             viewHolder.savedAdventure = convertView.findViewById(R.id.saved_adventure_value);
             viewHolder.savedTotalChapters = convertView.findViewById(R.id.saved_chapters_value);
@@ -68,15 +67,14 @@ public class HeroAdapter extends ArrayAdapter<HeroModel> {
         final HeroModel heroModel = mHeroList.get(position);
 
         viewHolder.savedHeroName.setText(heroModel.getName());
-        viewHolder.savedHeroGender.setText(heroModel.getGender());
 
         viewHolder.savedAdventure.setText(heroModel.getAdventure());
-        viewHolder.savedTotalChapters.setText(heroModel.getTotalChapters());
+        viewHolder.savedTotalChapters.setText(String.valueOf(heroModel.getTotalChapters()));
         viewHolder.savedDifficulty.setText(heroModel.getDifficulty());
 
-        viewHolder.savedAbility.setText(String.format("%s(%s)", heroModel.getAbilityCurrent(), heroModel.getAbilityMax()));
-        viewHolder.savedStamina.setText(String.format("%s(%s)", heroModel.getStaminaCurrent(), heroModel.getStaminaMax()));
-        viewHolder.savedLuck.setText(String.format("%s(%s)", heroModel.getLuckCurrent(), heroModel.getLuckMax()));
+        viewHolder.savedAbility.setText(String.format("%s (%s)", heroModel.getAbilityCurrent(), heroModel.getAbilityMax()));
+        viewHolder.savedStamina.setText(String.format("%s (%s)", heroModel.getStaminaCurrent(), heroModel.getStaminaMax()));
+        viewHolder.savedLuck.setText(String.format("%s (%s)", heroModel.getLuckCurrent(), heroModel.getLuckMax()));
 
         convertView.findViewById(R.id.load_saved_games).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,7 +106,6 @@ public class HeroAdapter extends ArrayAdapter<HeroModel> {
     private class SavedGamesViewHolder{
 
         public TextView savedHeroName;
-        public TextView savedHeroGender;
 
         public TextView savedAdventure;
         public TextView savedTotalChapters;
@@ -122,8 +119,6 @@ public class HeroAdapter extends ArrayAdapter<HeroModel> {
 
 
     private void deleteHero(final HeroModel heroModel) {
-
-
 
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
 
@@ -161,15 +156,14 @@ public class HeroAdapter extends ArrayAdapter<HeroModel> {
                         cursor.getString(1),
                         cursor.getString(2),
                         cursor.getString(3),
-                        cursor.getString(4),
-                        cursor.getString(5),
-                        cursor.getString(6),
-                        cursor.getString(7),
-                        cursor.getString(8),
-                        cursor.getString(9),
-                        cursor.getString(10),
-                        cursor.getString(11),
-                        cursor.getString(12)
+                        cursor.getInt(4),
+                        cursor.getInt(5),
+                        cursor.getInt(6),
+                        cursor.getInt(7),
+                        cursor.getInt(8),
+                        cursor.getInt(9),
+                        cursor.getInt(10),
+                        cursor.getInt(11)
                 ));
             } while (cursor.moveToNext());
         }

@@ -23,7 +23,6 @@ import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_DIFFICULTY;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_LUCK_CURRENT;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_LUCK_MAX;
-import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_PLAYER_GENDER;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_PLAYER_NAME;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_STAMINA_CURRENT;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_STAMINA_MAX;
@@ -36,14 +35,13 @@ public class HeroCreation extends AppCompatActivity {
     String mDifficulty;
     String mAdventure;
     String mHeroName;
-    String mHeroGender;
 
-    String mAbilityMax;
-    String mAbilityCurrent;
-    String mStaminaMax;
-    String mStaminaCurrent;
-    String mLuckMax;
-    String mLuckCurrent;
+    int mAbilityMax;
+    int mAbilityCurrent;
+    int mStaminaMax;
+    int mStaminaCurrent;
+    int mLuckMax;
+    int mLuckCurrent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,25 +56,18 @@ public class HeroCreation extends AppCompatActivity {
         final TextView heroStamina = findViewById(R.id.hero_stamina_value);
         final TextView heroLuck = findViewById(R.id.hero_luck_value);
 
-        heroStamina.setText(String.valueOf(R.string.hero_gender_hint));
-        heroLuck.setText(String.valueOf(R.string.hero_gender_hint));
-        heroAbility.setText(String.valueOf(R.string.hero_gender_hint));
+        heroStamina.setText(getText(R.string.hero_stamina_hint));
+        heroLuck.setText(getText(R.string.hero_luck_hint));
+        heroAbility.setText(getText(R.string.hero_ability_hint));
 
         final Button difficultyValidate = findViewById(R.id.validate_difficulty);
         final Button heroNameValidate = findViewById(R.id.hero_name_creation);
-        final Button heroGenderValidate = findViewById(R.id.validate_gender);
         final Button abilityDices = findViewById(R.id.hero_ability_dices);
         final Button staminaDices = findViewById(R.id.hero_stamina_dices);
         final Button luckDices = findViewById(R.id.hero_luck_dices);
 
         final Button startAdventure = findViewById(R.id.start_adventure);
         startAdventure.setEnabled(false);
-
-        if (heroGenderValidate.isEnabled()) {
-            heroAbility.setText(R.string.hero_gender_hint);
-            heroStamina.setText(R.string.hero_gender_hint);
-            heroLuck.setText(R.string.hero_gender_hint);
-        }
 
         heroNameValidate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +81,6 @@ public class HeroCreation extends AppCompatActivity {
 
                     if (!difficultyValidate.isEnabled() &&
                             !heroNameValidate.isEnabled() &&
-                            !heroGenderValidate.isEnabled() &&
                             !abilityDices.isEnabled() &&
                             !staminaDices.isEnabled() &&
                             !luckDices.isEnabled() ) {
@@ -110,14 +100,13 @@ public class HeroCreation extends AppCompatActivity {
             public void onClick(View view) {
                 int heroAbilityValue = (int) ((6 * Math.random() + 1)) + 6;
                 heroAbility.setText(String.valueOf(heroAbilityValue));
-                mAbilityMax = String.valueOf(heroAbilityValue);
-                mAbilityCurrent = String.valueOf(heroAbilityValue);
+                mAbilityMax = heroAbilityValue;
+                mAbilityCurrent = heroAbilityValue;
 
                 abilityDices.setEnabled(false);
 
                 if (!difficultyValidate.isEnabled() &&
                         !heroNameValidate.isEnabled() &&
-                        !heroGenderValidate.isEnabled() &&
                         !abilityDices.isEnabled() &&
                         !staminaDices.isEnabled() &&
                         !luckDices.isEnabled() ) {
@@ -134,14 +123,13 @@ public class HeroCreation extends AppCompatActivity {
             public void onClick(View view) {
                 int heroStaminaValue = (int) ((6 * Math.random()) + 1) + 12;
                 heroStamina.setText(String.valueOf(heroStaminaValue));
-                mStaminaMax = String.valueOf(heroStaminaValue);
-                mStaminaCurrent = String.valueOf(heroStaminaValue);
+                mStaminaMax = heroStaminaValue;
+                mStaminaCurrent = heroStaminaValue;
 
                 staminaDices.setEnabled(false);
 
                 if (!difficultyValidate.isEnabled() &&
                         !heroNameValidate.isEnabled() &&
-                        !heroGenderValidate.isEnabled() &&
                         !abilityDices.isEnabled() &&
                         !staminaDices.isEnabled() &&
                         !luckDices.isEnabled() ) {
@@ -158,14 +146,13 @@ public class HeroCreation extends AppCompatActivity {
             public void onClick(View view) {
                 int heroLuckValue = (int) ((6 * Math.random()) + 1) + 6;
                 heroLuck.setText(String.valueOf(heroLuckValue));
-                mLuckMax = String.valueOf(heroLuckValue);
-                mLuckCurrent = String.valueOf(heroLuckValue);
+                mLuckMax = heroLuckValue;
+                mLuckCurrent = heroLuckValue;
 
                 luckDices.setEnabled(false);
 
                 if (!difficultyValidate.isEnabled() &&
                         !heroNameValidate.isEnabled() &&
-                        !heroGenderValidate.isEnabled() &&
                         !abilityDices.isEnabled() &&
                         !staminaDices.isEnabled() &&
                         !luckDices.isEnabled() ) {
@@ -188,104 +175,25 @@ public class HeroCreation extends AppCompatActivity {
                 contentValues.put(COLUMN_ADVENTURE, mAdventure);
                 contentValues.put(COLUMN_DIFFICULTY, mDifficulty);
                 contentValues.put(COLUMN_PLAYER_NAME, mHeroName);
-                contentValues.put(COLUMN_PLAYER_GENDER, mHeroGender);
                 contentValues.put(COLUMN_ABILITY_MAX, mAbilityMax);
                 contentValues.put(COLUMN_ABILITY_CURRENT, mAbilityCurrent);
                 contentValues.put(COLUMN_STAMINA_MAX, mStaminaMax);
                 contentValues.put(COLUMN_STAMINA_CURRENT, mStaminaCurrent);
                 contentValues.put(COLUMN_LUCK_MAX, mLuckMax);
                 contentValues.put(COLUMN_LUCK_CURRENT, mLuckCurrent);
-                contentValues.put(COLUMN_CURRENT_CHAPTER, "0");
-                contentValues.put(COLUMN_TOTAL_CHAPTERS, "0");
+                contentValues.put(COLUMN_CURRENT_CHAPTER, 0);
+                contentValues.put(COLUMN_TOTAL_CHAPTERS, 0);
                 long heroID = database.insert(DatabaseContract.HeroEntry.TABLE_NAME, null, contentValues);
 
                 Intent intent = new Intent(HeroCreation.this, AdventureTalisman.class);
                 intent.putExtra("HeroID", String.valueOf(heroID));
-                intent.putExtra("CurrentChapter", "0");
-                intent.putExtra("TotalChapters", "0");
+                intent.putExtra("CurrentChapter", 0);
+                intent.putExtra("TotalChapters", 0);
                 startActivity(intent);
             }
         });
 
     }
-
-
-    public void onRadioButtonGender(View view) {
-
-        final RadioButton maleHero = findViewById(R.id.hero_selection_male);
-        final RadioButton femaleHero = findViewById(R.id.hero_selection_female);
-
-        final TextView heroAbility = findViewById(R.id.hero_ability_value);
-        final TextView heroStamina = findViewById(R.id.hero_stamina_value);
-        final TextView heroLuck = findViewById(R.id.hero_luck_value);
-
-        final Button difficultyValidate = findViewById(R.id.validate_difficulty);
-        final Button heroNameValidate = findViewById(R.id.hero_name_creation);
-        final Button heroGenderValidate = findViewById(R.id.validate_gender);
-        final Button abilityDices = findViewById(R.id.hero_ability_dices);
-        final Button staminaDices = findViewById(R.id.hero_stamina_dices);
-        final Button luckDices = findViewById(R.id.hero_luck_dices);
-
-        final Button startAdventure = findViewById(R.id.start_adventure);
-
-        heroGenderValidate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if (maleHero.isChecked()) {
-                    femaleHero.setChecked(false);
-                    mHeroGender = getString(R.string.hero_male_sql);
-
-                    if (abilityDices.isEnabled()) {
-                        heroAbility.setText(R.string.hero_ability_hint_male);
-                    }
-
-                    if (staminaDices.isEnabled()) {
-                        heroStamina.setText(R.string.hero_stamina_hint_male);
-                    }
-
-                    if (luckDices.isEnabled()) {
-                        heroLuck.setText(R.string.hero_luck_hint_male);
-                    }
-
-                } else {
-
-                    maleHero.setChecked(false);
-                    mHeroGender = getString(R.string.hero_female_sql);
-
-                    if(abilityDices.isEnabled()) {
-                        heroAbility.setText(R.string.hero_ability_hint_female);
-                    }
-
-                    if(staminaDices.isEnabled()) {
-                        heroStamina.setText(R.string.hero_stamina_hint_female);
-                    }
-
-                    if (luckDices.isEnabled()) {
-                        heroLuck.setText(R.string.hero_luck_hint_female);
-                    }
-
-                }
-
-                maleHero.setEnabled(false);
-                femaleHero.setEnabled(false);
-                heroGenderValidate.setEnabled(false);
-
-                if (!difficultyValidate.isEnabled() &&
-                        !heroNameValidate.isEnabled() &&
-                        !heroGenderValidate.isEnabled() &&
-                        !abilityDices.isEnabled() &&
-                        !staminaDices.isEnabled() &&
-                        !luckDices.isEnabled() ) {
-                    startAdventure.setEnabled(true);
-                } else {
-                    startAdventure.setEnabled(false);
-                }
-
-            }
-        });
-    }
-
 
     public void onRadioButtonDifficulty(View view) {
 
@@ -294,7 +202,6 @@ public class HeroCreation extends AppCompatActivity {
 
         final Button difficultyValidate = findViewById(R.id.validate_difficulty);
         final Button heroNameValidate = findViewById(R.id.hero_name_creation);
-        final Button heroGenderValidate = findViewById(R.id.validate_gender);
         final Button abilityDices = findViewById(R.id.hero_ability_dices);
         final Button staminaDices = findViewById(R.id.hero_stamina_dices);
         final Button luckDices = findViewById(R.id.hero_luck_dices);
@@ -321,7 +228,6 @@ public class HeroCreation extends AppCompatActivity {
 
                 if (!difficultyValidate.isEnabled() &&
                         !heroNameValidate.isEnabled() &&
-                        !heroGenderValidate.isEnabled() &&
                         !abilityDices.isEnabled() &&
                         !staminaDices.isEnabled() &&
                         !luckDices.isEnabled() ) {

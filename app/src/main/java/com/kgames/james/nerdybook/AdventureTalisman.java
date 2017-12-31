@@ -1,6 +1,5 @@
 package com.kgames.james.nerdybook;
 
-import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,8 +13,9 @@ public class AdventureTalisman extends AppCompatActivity {
     HeroDBHelper mHeroDBHelper;
 
     String mHeroID;
-    String mCurrentChapter;
-    String mTotalChapters;
+    int mCurrentChapter;
+    int mTotalChapters;
+    int mStatLoss;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,12 +25,13 @@ public class AdventureTalisman extends AppCompatActivity {
         mHeroDBHelper = new HeroDBHelper(AdventureTalisman.this);
 
         mHeroID = getIntent().getExtras().getString("HeroID");
-        mCurrentChapter = getIntent().getExtras().getString("CurrentChapter");
-        mTotalChapters = getIntent().getExtras().getString("TotalChapters");
+        mCurrentChapter = getIntent().getExtras().getInt("CurrentChapter");
+        mTotalChapters = getIntent().getExtras().getInt("TotalChapters");
 
         //Typeface mainFont = Typeface.createFromAsset(getAssets(), "fonts/Dosmilcatorce.ttf");
 
         final TextView adventureContent = findViewById(R.id.adventure_content);
+        final TextView statsLoss = findViewById(R.id.stats_loss);
 
         //adventureContent.setTypeface(mainFont);
 
@@ -50,7 +51,7 @@ public class AdventureTalisman extends AppCompatActivity {
                             @Override
                             public void run() {
 
-                                if (mCurrentChapter.equals("0")) {
+                                if (mCurrentChapter == 0) {
 
                                     choice1.setVisibility(View.VISIBLE);
                                     choice2.setVisibility(View.GONE);
@@ -64,8 +65,8 @@ public class AdventureTalisman extends AppCompatActivity {
                                         @Override
                                         public void onClick(View view) {
 
-                                            mCurrentChapter = "1";
-                                            mTotalChapters = String.valueOf(Integer.parseInt(mTotalChapters) + 1);
+                                            mCurrentChapter = 1;
+                                            mTotalChapters = mTotalChapters + 1;
                                             mHeroDBHelper.updateChapters(mHeroID, mCurrentChapter, mTotalChapters);
 
                                         }
@@ -73,7 +74,7 @@ public class AdventureTalisman extends AppCompatActivity {
 
                                 }
 
-                                if (mCurrentChapter.equals("1")) {
+                                if (mCurrentChapter == 1) {
 
                                     choice1.setVisibility(View.VISIBLE);
                                     choice2.setVisibility(View.VISIBLE);
@@ -88,8 +89,8 @@ public class AdventureTalisman extends AppCompatActivity {
                                         @Override
                                         public void onClick(View view) {
 
-                                            mCurrentChapter = "17";
-                                            mTotalChapters = String.valueOf(Integer.parseInt(mTotalChapters) + 1);
+                                            mCurrentChapter = 17;
+                                            mTotalChapters = mTotalChapters + 1;
                                             mHeroDBHelper.updateChapters(mHeroID, mCurrentChapter, mTotalChapters);
 
                                         }
@@ -99,8 +100,8 @@ public class AdventureTalisman extends AppCompatActivity {
                                         @Override
                                         public void onClick(View view) {
 
-                                            mCurrentChapter = "30";
-                                            mTotalChapters = String.valueOf(Integer.parseInt(mTotalChapters) + 1);
+                                            mCurrentChapter = 30;
+                                            mTotalChapters = mTotalChapters + 1;
                                             mHeroDBHelper.updateChapters(mHeroID, mCurrentChapter, mTotalChapters);
 
                                         }
@@ -108,12 +109,14 @@ public class AdventureTalisman extends AppCompatActivity {
 
                                 }
 
-                                if (mCurrentChapter.equals("13")) {
+                                if (mCurrentChapter == 13) {
 
                                     choice1.setVisibility(View.VISIBLE);
                                     choice2.setVisibility(View.VISIBLE);
                                     choice3.setVisibility(View.VISIBLE);
                                     choice4.setVisibility(View.VISIBLE);
+
+                                    statsLoss.setVisibility(View.GONE);
 
                                     adventureContent.setText(getString(R.string.talisman_chapter13));
                                     choice1.setText(R.string.talisman_chapter13_choice1);
@@ -125,8 +128,8 @@ public class AdventureTalisman extends AppCompatActivity {
                                         @Override
                                         public void onClick(View view) {
 
-                                            mCurrentChapter = "247";
-                                            mTotalChapters = String.valueOf(Integer.parseInt(mTotalChapters) + 1);
+                                            mCurrentChapter = 247;
+                                            mTotalChapters = mTotalChapters + 1;
                                             mHeroDBHelper.updateChapters(mHeroID, mCurrentChapter, mTotalChapters);
 
                                         }
@@ -136,8 +139,8 @@ public class AdventureTalisman extends AppCompatActivity {
                                         @Override
                                         public void onClick(View view) {
 
-                                            mCurrentChapter = "60";
-                                            mTotalChapters = String.valueOf(Integer.parseInt(mTotalChapters) + 1);
+                                            mCurrentChapter = 60;
+                                            mTotalChapters = mTotalChapters + 1;
                                             mHeroDBHelper.updateChapters(mHeroID, mCurrentChapter, mTotalChapters);
 
                                         }
@@ -147,8 +150,8 @@ public class AdventureTalisman extends AppCompatActivity {
                                         @Override
                                         public void onClick(View view) {
 
-                                            mCurrentChapter = "75";
-                                            mTotalChapters = String.valueOf(Integer.parseInt(mTotalChapters) + 1);
+                                            mCurrentChapter = 75;
+                                            mTotalChapters = mTotalChapters + 1;
                                             mHeroDBHelper.updateChapters(mHeroID, mCurrentChapter, mTotalChapters);
 
                                         }
@@ -158,8 +161,8 @@ public class AdventureTalisman extends AppCompatActivity {
                                         @Override
                                         public void onClick(View view) {
 
-                                            mCurrentChapter = "5";
-                                            mTotalChapters = String.valueOf(Integer.parseInt(mTotalChapters) + 1);
+                                            mCurrentChapter = 5;
+                                            mTotalChapters = mTotalChapters + 1;
                                             mHeroDBHelper.updateChapters(mHeroID, mCurrentChapter, mTotalChapters);
 
                                         }
@@ -167,7 +170,7 @@ public class AdventureTalisman extends AppCompatActivity {
 
                                 }
 
-                                if (mCurrentChapter.equals("17")) {
+                                if (mCurrentChapter == 17) {
 
                                     choice1.setVisibility(View.VISIBLE);
                                     choice2.setVisibility(View.VISIBLE);
@@ -182,8 +185,8 @@ public class AdventureTalisman extends AppCompatActivity {
                                         @Override
                                         public void onClick(View view) {
 
-                                            mCurrentChapter = "41";
-                                            mTotalChapters = String.valueOf(Integer.parseInt(mTotalChapters) + 1);
+                                            mCurrentChapter = 41;
+                                            mTotalChapters = mTotalChapters + 1;
                                             mHeroDBHelper.updateChapters(mHeroID, mCurrentChapter, mTotalChapters);
 
                                         }
@@ -193,8 +196,8 @@ public class AdventureTalisman extends AppCompatActivity {
                                         @Override
                                         public void onClick(View view) {
 
-                                            mCurrentChapter = "21";
-                                            mTotalChapters = String.valueOf(Integer.parseInt(mTotalChapters) + 1);
+                                            mCurrentChapter = 21;
+                                            mTotalChapters = mTotalChapters + 1;
                                             mHeroDBHelper.updateChapters(mHeroID, mCurrentChapter, mTotalChapters);
 
                                         }
@@ -202,7 +205,7 @@ public class AdventureTalisman extends AppCompatActivity {
 
                                 }
 
-                                if (mCurrentChapter.equals("21")) {
+                                if (mCurrentChapter == 21) {
 
                                     choice1.setVisibility(View.VISIBLE);
                                     choice2.setVisibility(View.GONE);
@@ -216,8 +219,8 @@ public class AdventureTalisman extends AppCompatActivity {
                                         @Override
                                         public void onClick(View view) {
 
-                                            mCurrentChapter = "13";
-                                            mTotalChapters = String.valueOf(Integer.parseInt(mTotalChapters) + 1);
+                                            mCurrentChapter = 13;
+                                            mTotalChapters = mTotalChapters + 1;
                                             mHeroDBHelper.updateChapters(mHeroID, mCurrentChapter, mTotalChapters);
 
                                         }
@@ -225,7 +228,7 @@ public class AdventureTalisman extends AppCompatActivity {
 
                                 }
 
-                                if (mCurrentChapter.equals("30")) {
+                                if (mCurrentChapter == 30) {
 
                                     choice1.setVisibility(View.VISIBLE);
                                     choice2.setVisibility(View.GONE);
@@ -239,8 +242,8 @@ public class AdventureTalisman extends AppCompatActivity {
                                         @Override
                                         public void onClick(View view) {
 
-                                            mCurrentChapter = "13";
-                                            mTotalChapters = String.valueOf(Integer.parseInt(mTotalChapters) + 1);
+                                            mCurrentChapter = 13;
+                                            mTotalChapters = mTotalChapters + 1;
                                             mHeroDBHelper.updateChapters(mHeroID, mCurrentChapter, mTotalChapters);
 
                                         }
@@ -248,12 +251,17 @@ public class AdventureTalisman extends AppCompatActivity {
 
                                 }
 
-                                if (mCurrentChapter.equals("41")) {
+                                if (mCurrentChapter == 41) {
 
                                     choice1.setVisibility(View.VISIBLE);
                                     choice2.setVisibility(View.GONE);
                                     choice3.setVisibility(View.GONE);
                                     choice4.setVisibility(View.GONE);
+
+                                    statsLoss.setVisibility(View.VISIBLE);
+
+                                    mStatLoss = 2;
+                                    statsLoss.setText(String.format(getString(R.string.hero_stamina_loss), String.valueOf(mStatLoss)));
 
                                     adventureContent.setText(getString(R.string.talisman_chapter41));
                                     choice1.setText(R.string.talisman_chapter41_choice1);
@@ -262,8 +270,10 @@ public class AdventureTalisman extends AppCompatActivity {
                                         @Override
                                         public void onClick(View view) {
 
-                                            mCurrentChapter = "13";
-                                            mTotalChapters = String.valueOf(Integer.parseInt(mTotalChapters) + 1);
+                                            mHeroDBHelper.currentStaminaLoss(mHeroID, mStatLoss);
+
+                                            mCurrentChapter = 13;
+                                            mTotalChapters = mTotalChapters + 1;
                                             mHeroDBHelper.updateChapters(mHeroID, mCurrentChapter, mTotalChapters);
 
                                         }
@@ -275,7 +285,7 @@ public class AdventureTalisman extends AppCompatActivity {
                             }
                         });
                     }
-                } catch (InterruptedException e) {
+                } catch (InterruptedException ignored) {
                 }
             }
         };

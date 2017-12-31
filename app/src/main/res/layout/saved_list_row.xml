@@ -23,12 +23,6 @@
             android:id="@+id/saved_hero_value"
             android:text="@string/hero_name_hint"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/saved_hero_gender"
-            tool:text="@string/saved_gender"/>
-
     </LinearLayout>
 
     <LinearLayout

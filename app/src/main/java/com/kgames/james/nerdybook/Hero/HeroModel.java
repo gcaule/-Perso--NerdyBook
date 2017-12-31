@@ -12,31 +12,29 @@ public class HeroModel extends DatabaseContract.HeroEntry {
     private String difficulty;
 
     private String name;
-    private String gender;
 
-    private String abilityMax;
-    private String abilityCurrent;
-    private String staminaMax;
-    private String staminaCurrent;
-    private String luckMax;
-    private String luckCurrent;
+    private int abilityMax;
+    private int abilityCurrent;
+    private int staminaMax;
+    private int staminaCurrent;
+    private int luckMax;
+    private int luckCurrent;
 
-    private String currentChapter;
-    private String totalChapters;
+    private int currentChapter;
+    private int totalChapters;
 
 
     public HeroModel() { }
 
     public HeroModel(String ID, String adventure, String difficulty,
-                     String name, String gender, String abilityMax,
-                     String abilityCurrent, String staminaMax,
-                     String staminaCurrent, String luckMax, String luckCurrent,
-                     String currentChapter, String totalChapters) {
+                     String name, int abilityMax,
+                     int abilityCurrent, int staminaMax,
+                     int staminaCurrent, int luckMax, int luckCurrent,
+                     int currentChapter, int totalChapters) {
         this.ID = ID;
         this.adventure = adventure;
         this.difficulty = difficulty;
         this.name = name;
-        this.gender = gender;
         this.abilityMax = abilityMax;
         this.abilityCurrent = abilityCurrent;
         this.staminaMax = staminaMax;
@@ -83,83 +81,74 @@ public class HeroModel extends DatabaseContract.HeroEntry {
     }
 
 
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-
-    public String getAbilityMax() {
+    public int getAbilityMax() {
         return abilityMax;
     }
 
-    public void setAbilityMax(String abilityMax) {
+    public void setAbilityMax(int abilityMax) {
         this.abilityMax = abilityMax;
     }
 
 
-    public String getAbilityCurrent() {
+    public int getAbilityCurrent() {
         return abilityCurrent;
     }
 
-    public void setAbilityCurrent(String abilityCurrent) {
+    public void setAbilityCurrent(int abilityCurrent) {
         this.abilityCurrent = abilityCurrent;
     }
 
 
-    public String getStaminaMax() {
+    public int getStaminaMax() {
         return staminaMax;
     }
 
-    public void setStaminaMax(String staminaMax) {
+    public void setStaminaMax(int staminaMax) {
         this.staminaMax = staminaMax;
     }
 
 
-    public String getStaminaCurrent() {
+    public int getStaminaCurrent() {
         return staminaCurrent;
     }
 
-    public void setStaminaCurrent(String staminaCurrent) {
+    public void setStaminaCurrent(int staminaCurrent) {
         this.staminaCurrent = staminaCurrent;
     }
 
 
-    public String getLuckMax() {
+    public int getLuckMax() {
         return luckMax;
     }
 
-    public void setLuckMax(String luckMax) {
+    public void setLuckMax(int luckMax) {
         this.luckMax = luckMax;
     }
 
 
-    public String getLuckCurrent() {
+    public int getLuckCurrent() {
         return luckCurrent;
     }
 
-    public void setLuckCurrent(String luckCurrent) {
+    public void setLuckCurrent(int luckCurrent) {
         this.luckCurrent = luckCurrent;
     }
 
 
-    public String getCurrentChapter() {
+    public int getCurrentChapter() {
         return currentChapter;
     }
 
-    public void setCurrentChapter(String currentChapter) {
+    public void setCurrentChapter(int currentChapter) {
         this.currentChapter = currentChapter;
     }
 
 
-    public String getTotalChapters() {
+    public int getTotalChapters() {
         return totalChapters;
     }
 
-    public void setTotalChapters(String totalChapters) {
+    public void setTotalChapters(int totalChapters) {
         this.totalChapters = totalChapters;
     }
 
