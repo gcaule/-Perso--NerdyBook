@@ -43,6 +43,10 @@ public class HeroCreation extends AppCompatActivity {
     int mLuckMax;
     int mLuckCurrent;
 
+    int mAbilityPotions;
+    int mStaminaPotions;
+    int mLuckPotions;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +69,7 @@ public class HeroCreation extends AppCompatActivity {
         final Button abilityDices = findViewById(R.id.hero_ability_dices);
         final Button staminaDices = findViewById(R.id.hero_stamina_dices);
         final Button luckDices = findViewById(R.id.hero_luck_dices);
+        final Button potionsValidate = findViewById(R.id.validate_potions);
 
         final Button startAdventure = findViewById(R.id.start_adventure);
         startAdventure.setEnabled(false);
@@ -83,7 +88,8 @@ public class HeroCreation extends AppCompatActivity {
                             !heroNameValidate.isEnabled() &&
                             !abilityDices.isEnabled() &&
                             !staminaDices.isEnabled() &&
-                            !luckDices.isEnabled() ) {
+                            !luckDices.isEnabled() &&
+                            !potionsValidate.isEnabled() ) {
                         startAdventure.setEnabled(true);
                     } else {
                         startAdventure.setEnabled(false);
@@ -109,7 +115,8 @@ public class HeroCreation extends AppCompatActivity {
                         !heroNameValidate.isEnabled() &&
                         !abilityDices.isEnabled() &&
                         !staminaDices.isEnabled() &&
-                        !luckDices.isEnabled() ) {
+                        !luckDices.isEnabled() &&
+                        !potionsValidate.isEnabled() ) {
                     startAdventure.setEnabled(true);
                 } else {
                     startAdventure.setEnabled(false);
@@ -132,7 +139,8 @@ public class HeroCreation extends AppCompatActivity {
                         !heroNameValidate.isEnabled() &&
                         !abilityDices.isEnabled() &&
                         !staminaDices.isEnabled() &&
-                        !luckDices.isEnabled() ) {
+                        !luckDices.isEnabled() &&
+                        !potionsValidate.isEnabled() ) {
                     startAdventure.setEnabled(true);
                 } else {
                     startAdventure.setEnabled(false);
@@ -155,7 +163,8 @@ public class HeroCreation extends AppCompatActivity {
                         !heroNameValidate.isEnabled() &&
                         !abilityDices.isEnabled() &&
                         !staminaDices.isEnabled() &&
-                        !luckDices.isEnabled() ) {
+                        !luckDices.isEnabled() &&
+                        !potionsValidate.isEnabled() ) {
                     startAdventure.setEnabled(true);
                 } else {
                     startAdventure.setEnabled(false);
@@ -205,6 +214,7 @@ public class HeroCreation extends AppCompatActivity {
         final Button abilityDices = findViewById(R.id.hero_ability_dices);
         final Button staminaDices = findViewById(R.id.hero_stamina_dices);
         final Button luckDices = findViewById(R.id.hero_luck_dices);
+        final Button potionsValidate = findViewById(R.id.validate_potions);
 
         final Button startAdventure = findViewById(R.id.start_adventure);
 
@@ -230,7 +240,70 @@ public class HeroCreation extends AppCompatActivity {
                         !heroNameValidate.isEnabled() &&
                         !abilityDices.isEnabled() &&
                         !staminaDices.isEnabled() &&
-                        !luckDices.isEnabled() ) {
+                        !luckDices.isEnabled() &&
+                        !potionsValidate.isEnabled() ) {
+                    startAdventure.setEnabled(true);
+                } else {
+                    startAdventure.setEnabled(false);
+                }
+
+            }
+        });
+    }
+
+    public void onRadioButtonPotions(View view) {
+
+        final RadioButton abilityPotions = findViewById(R.id.ability_potions);
+        final RadioButton staminaPotions = findViewById(R.id.stamina_potions);
+        final RadioButton luckPotions = findViewById(R.id.luck_potions);
+
+        final Button difficultyValidate = findViewById(R.id.validate_difficulty);
+        final Button heroNameValidate = findViewById(R.id.hero_name_creation);
+        final Button abilityDices = findViewById(R.id.hero_ability_dices);
+        final Button staminaDices = findViewById(R.id.hero_stamina_dices);
+        final Button luckDices = findViewById(R.id.hero_luck_dices);
+        final Button potionsValidate = findViewById(R.id.validate_potions);
+
+        final Button startAdventure = findViewById(R.id.start_adventure);
+
+        difficultyValidate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (abilityPotions.isChecked()) {
+                    staminaPotions.setChecked(false);
+                    luckPotions.setChecked(false);
+                    mAbilityPotions = 2;
+                    mStaminaPotions = 0;
+                    mLuckPotions = 0;
+
+                } else if (staminaPotions.isChecked()) {
+                    abilityPotions.setChecked(false);
+                    luckPotions.setChecked(false);
+                    mAbilityPotions = 0;
+                    mStaminaPotions = 2;
+                    mLuckPotions = 0;
+
+                } else if (luckPotions.isChecked()) {
+                    abilityPotions.setChecked(false);
+                    staminaPotions.setChecked(false);
+                    mAbilityPotions = 0;
+                    mStaminaPotions = 0;
+                    mLuckPotions = 2;
+
+                }
+
+                abilityPotions.setEnabled(false);
+                staminaPotions.setEnabled(false);
+                luckPotions.setEnabled(false);
+                potionsValidate.setEnabled(false);
+
+                if (!difficultyValidate.isEnabled() &&
+                        !heroNameValidate.isEnabled() &&
+                        !abilityDices.isEnabled() &&
+                        !staminaDices.isEnabled() &&
+                        !luckDices.isEnabled() &&
+                        !potionsValidate.isEnabled() ) {
                     startAdventure.setEnabled(true);
                 } else {
                     startAdventure.setEnabled(false);

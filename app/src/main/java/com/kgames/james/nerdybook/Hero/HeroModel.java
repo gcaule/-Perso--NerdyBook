@@ -1,7 +1,7 @@
 package com.kgames.james.nerdybook.Hero;
 
 /**
- * Created by james on 17/12/17.
+ * Model for Heroes.
  */
 
 public class HeroModel extends DatabaseContract.HeroEntry {
@@ -20,6 +20,13 @@ public class HeroModel extends DatabaseContract.HeroEntry {
     private int luckMax;
     private int luckCurrent;
 
+    private int abilityPotions;
+    private int staminaPotions;
+    private int luckPotions;
+
+    private int torchs;
+    private int goldenCoins;
+
     private int currentChapter;
     private int totalChapters;
 
@@ -30,6 +37,8 @@ public class HeroModel extends DatabaseContract.HeroEntry {
                      String name, int abilityMax,
                      int abilityCurrent, int staminaMax,
                      int staminaCurrent, int luckMax, int luckCurrent,
+                     int abilityPotions, int staminaPotions,
+                     int luckPotions, int torchs, int goldenCoins,
                      int currentChapter, int totalChapters) {
         this.ID = ID;
         this.adventure = adventure;
@@ -41,6 +50,11 @@ public class HeroModel extends DatabaseContract.HeroEntry {
         this.staminaCurrent = staminaCurrent;
         this.luckMax = luckMax;
         this.luckCurrent = luckCurrent;
+        this.abilityPotions = abilityPotions;
+        this.staminaPotions = staminaPotions;
+        this.luckPotions = luckPotions;
+        this.torchs = torchs;
+        this.goldenCoins = goldenCoins;
         this.currentChapter = currentChapter;
         this.totalChapters = totalChapters;
     }
@@ -132,6 +146,51 @@ public class HeroModel extends DatabaseContract.HeroEntry {
 
     public void setLuckCurrent(int luckCurrent) {
         this.luckCurrent = luckCurrent;
+    }
+
+
+    public int getAbilityPotions() {
+        return abilityPotions;
+    }
+
+    public void setAbilityPotions(int abilityPotions) {
+        this.abilityPotions = abilityPotions;
+    }
+
+
+    public int getStaminaPotions() {
+        return staminaPotions;
+    }
+
+    public void setStaminaPotions(int staminaPotions) {
+        this.staminaPotions = staminaPotions;
+    }
+
+
+    public int getLuckPotions() {
+        return luckPotions;
+    }
+
+    public void setLuckPotions(int luckPotions) {
+        this.luckPotions = luckPotions;
+    }
+
+
+    public int getTorchs() {
+        return torchs;
+    }
+
+    public void setTorchs(int torchs) {
+        this.torchs = torchs;
+    }
+
+
+    public int getGoldenCoins() {
+        return goldenCoins;
+    }
+
+    public void setGoldenCoins(int goldenCoins) {
+        this.goldenCoins = goldenCoins;
     }
 
 

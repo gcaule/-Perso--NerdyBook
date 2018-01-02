@@ -18,7 +18,7 @@ import com.kgames.james.nerdybook.R;
 import java.util.List;
 
 /**
- * Created by james on 17/12/17.
+ * Adapter for saved games list.
  */
 
 public class HeroAdapter extends ArrayAdapter<HeroModel> {
@@ -163,7 +163,12 @@ public class HeroAdapter extends ArrayAdapter<HeroModel> {
                         cursor.getInt(8),
                         cursor.getInt(9),
                         cursor.getInt(10),
-                        cursor.getInt(11)
+                        cursor.getInt(11),
+                        cursor.getInt(12),
+                        cursor.getInt(13),
+                        cursor.getInt(14),
+                        cursor.getInt(15),
+                        cursor.getInt(16)
                 ));
             } while (cursor.moveToNext());
         }

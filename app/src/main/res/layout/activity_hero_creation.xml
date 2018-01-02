@@ -171,6 +171,59 @@
 
         </LinearLayout>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/choose_potions"
+            android:text="@string/choose_potions"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/potions_group"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/ability_potions"
+                    android:text="@string/ability_potions"
+                    android:layout_gravity="center"
+                    android:onClick="onRadioButtonPotions"
+                    android:layout_weight="1"/>
+
+                <RadioButton
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/stamina_potions"
+                    android:text="@string/stamina_potions"
+                    android:layout_gravity="center"
+                    android:onClick="onRadioButtonPotions"
+                    android:layout_weight="1"/>
+
+                <RadioButton
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/luck_potions"
+                    android:text="@string/luck_potions"
+                    android:layout_gravity="center"
+                    android:onClick="onRadioButtonPotions"
+                    android:layout_weight="1"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/validate_potions"
+            android:text="@string/validate_potions_choice"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

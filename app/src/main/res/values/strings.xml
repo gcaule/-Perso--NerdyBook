@@ -66,10 +66,25 @@
     <string name="hero_stamina_hint">Endurance du Héros</string>
     <string name="hero_luck_hint">Chance du Héros</string>
 
-    <!-- Stats loss -->
-    <string name="hero_stamina_loss">Vous perdez %1$s points d\'ENDURANCE (il vous en reste %2$s).</string>
+    <!-- Potions -->
+    <string name="choose_potions">Choississez vos potions (vous en recevrez deux du type sélectionné)</string>
 
+    <string name="ability_potions">Potions d\'Habileté</string>
+    <string name="stamina_potions">Potions d\'Endurance</string>
+    <string name="luck_potions">Potions de Chance</string>
+
+    <string name="validate_potions_choice">Choisir ce type de potion !</string>
+
+    <!-- Stats loss -->
+    <string name="hero_ability_loss">Vous perdez %1$s points d\'HABILETE (il vous en reste %2$s).</string>
+    <string name="hero_ability_null">Vous perdez %1$s points d\'HABILETE (et il ne vous en reste plus).</string>
+
+    <string name="hero_stamina_loss">Vous perdez %1$s points d\'ENDURANCE (il vous en reste %2$s).</string>
     <string name="hero_stamina_null">Vous perdez %1$s points d\'ENDURANCE (et il ne vous en reste plus).</string>
+
+    <string name="hero_luck_loss">Vous perdez %1$s points de CHANCE (il vous en reste %2$s).</string>
+    <string name="hero_luck_null">Vous perdez %1$s points de CHANCE (et il ne vous en reste plus).</string>
+
     <string name="hero_death">Ok, ça n\'est certainement pas une bonne nouvelle...</string>
 
     <!-- Talisman of the Death -->

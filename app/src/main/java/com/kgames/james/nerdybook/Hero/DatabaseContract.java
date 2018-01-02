@@ -3,7 +3,7 @@ package com.kgames.james.nerdybook.Hero;
 import android.provider.BaseColumns;
 
 /**
- * Created by apprenti on 03/10/17.
+ * Database Contract for Heroes.
  */
 
 public class DatabaseContract {
@@ -25,6 +25,13 @@ public class DatabaseContract {
         public static final String COLUMN_STAMINA_CURRENT = "staminaCurrent";
         public static final String COLUMN_LUCK_MAX = "luckMax";
         public static final String COLUMN_LUCK_CURRENT = "luckCurrent";
+
+        public static final String COLUMN_ABILITY_POTIONS = "abilityPotions";
+        public static final String COLUMN_STAMINA_POTIONS = "staminaPotions";
+        public static final String COLUMN_LUCK_POTIONS = "luckPotions";
+
+        public static final String COLUMN_TORCHS = "torchs";
+        public static final String COLUMN_GC = "goldenCoins";
 
         public static final String COLUMN_CURRENT_CHAPTER = "currentChapter";
         public static final String COLUMN_TOTAL_CHAPTERS = "totalChapters";

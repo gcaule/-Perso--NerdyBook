@@ -15,8 +15,12 @@ public class AdventureTalisman extends AppCompatActivity {
     String mHeroID;
     int mCurrentChapter;
     int mTotalChapters;
-    int mStatLoss;
-    int mStatCurrent;
+    int mAbilityLoss;
+    int mAbilityCurrent;
+    int mStaminaLoss;
+    int mStaminaCurrent;
+    int mLuckLoss;
+    int mLuckCurrent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +36,8 @@ public class AdventureTalisman extends AppCompatActivity {
         //Typeface mainFont = Typeface.createFromAsset(getAssets(), "fonts/Dosmilcatorce.ttf");
 
         final TextView adventureContent = findViewById(R.id.adventure_content);
-        final TextView statsLoss = findViewById(R.id.stats_loss);
+        final TextView statsLoss1 = findViewById(R.id.stats_loss1);
+        final TextView statsLoss2 = findViewById(R.id.stats_loss2);
 
         //adventureContent.setTypeface(mainFont);
 
@@ -117,7 +122,7 @@ public class AdventureTalisman extends AppCompatActivity {
                                     choice3.setVisibility(View.VISIBLE);
                                     choice4.setVisibility(View.VISIBLE);
 
-                                    statsLoss.setVisibility(View.GONE);
+                                    statsLoss1.setVisibility(View.GONE);
 
                                     adventureContent.setText(getString(R.string.talisman_chapter13));
                                     choice1.setText(R.string.talisman_chapter13_choice1);
@@ -254,14 +259,14 @@ public class AdventureTalisman extends AppCompatActivity {
 
                                 if (mCurrentChapter == 41) {
 
-                                    statsLoss.setVisibility(View.VISIBLE);
+                                    statsLoss1.setVisibility(View.VISIBLE);
 
-                                    mStatLoss = 2;
-                                    mStatCurrent = mHeroDBHelper.currentStamina(mHeroID);
+                                    mStaminaLoss = 2;
+                                    mStaminaCurrent = mHeroDBHelper.currentStamina(mHeroID);
 
-                                    if (mStatCurrent - mStatLoss < 0) {
+                                    if (mStaminaCurrent - mStaminaLoss < 0) {
 
-                                        statsLoss.setText(getString(R.string.hero_stamina_null));
+                                        statsLoss1.setText(getString(R.string.hero_stamina_null));
 
                                         choice1.setVisibility(View.VISIBLE);
                                         choice2.setVisibility(View.GONE);
@@ -284,8 +289,8 @@ public class AdventureTalisman extends AppCompatActivity {
                                         choice3.setVisibility(View.GONE);
                                         choice4.setVisibility(View.GONE);
 
-                                        statsLoss.setText(String.format(getString(R.string.hero_stamina_loss),
-                                                String.valueOf(mStatLoss), String.valueOf(mStatCurrent - mStatLoss)));
+                                        statsLoss1.setText(String.format(getString(R.string.hero_stamina_loss),
+                                                String.valueOf(mStaminaLoss), String.valueOf(mStaminaCurrent - mStaminaLoss)));
 
                                         adventureContent.setText(getString(R.string.talisman_chapter41));
                                         choice1.setText(R.string.talisman_chapter41_choice1);
@@ -294,7 +299,7 @@ public class AdventureTalisman extends AppCompatActivity {
                                             @Override
                                             public void onClick(View view) {
 
-                                                mHeroDBHelper.currentStaminaLoss(mHeroID, mStatLoss);
+                                                mHeroDBHelper.currentStaminaLoss(mHeroID, mStaminaLoss);
 
                                                 mCurrentChapter = 13;
                                                 mTotalChapters = mTotalChapters + 1;

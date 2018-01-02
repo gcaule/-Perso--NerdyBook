@@ -3,10 +3,8 @@ package com.kgames.james.nerdybook;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 
-import com.kgames.james.nerdybook.Hero.DatabaseContract;
 import com.kgames.james.nerdybook.Hero.HeroAdapter;
 import com.kgames.james.nerdybook.Hero.HeroDBHelper;
 import com.kgames.james.nerdybook.Hero.HeroModel;
@@ -51,7 +49,12 @@ public class SavedGames extends AppCompatActivity {
                         cursor.getInt(8),
                         cursor.getInt(9),
                         cursor.getInt(10),
-                        cursor.getInt(11)
+                        cursor.getInt(11),
+                        cursor.getInt(12),
+                        cursor.getInt(13),
+                        cursor.getInt(14),
+                        cursor.getInt(15),
+                        cursor.getInt(16)
                 ));
             } while (cursor.moveToNext());
 
