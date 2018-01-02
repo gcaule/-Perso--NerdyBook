@@ -78,11 +78,36 @@
     <!-- Potions -->
     <string name="choose_potions">Choississez vos potions (vous en recevrez deux du type sélectionné)</string>
 
-    <string name="ability_potions">Potions d\'Habileté</string>
-    <string name="stamina_potions">Potions d\'Endurance</string>
-    <string name="luck_potions">Potions de Chance</string>
+    <string name="ability_potions">Potions d\'Adresse</string>
+    <string name="stamina_potions">Potions de Vigueur</string>
+    <string name="luck_potions">Potions de Bonne Fortune</string>
 
     <string name="validate_potions_choice">Choisir ce type de potion !</string>
+
+    <!-- Adventure sheet -->
+    <string name="ability">HABILETE</string>
+    <string name="ability_value">%1$s (%2$s)</string>
+
+    <string name="stamina">ENDURANCE</string>
+    <string name="stamina_value">%1$s (%2$s)</string>
+
+    <string name="luck">CHANCE</string>
+    <string name="luck_value">%1$s (%2$s)</string>
+
+    <string name="stuff">Equipement</string>
+
+    <string name="provisions">Provisions</string>
+    <string name="meals">Repas</string>
+    <string name="golden_coins">Pièces d\'or</string>
+    <string name="torchs">Torches</string>
+
+    <string name="light_torch">Allumer une torche</string>
+    <string name="eat_meal">Consommer un repas</string>
+
+    <string name="potions">Potions</string>
+    <string name="consume_ability_potion">Boire une potion d\'Adresse</string>
+    <string name="consume_stamina_potion">Boire une potion de Vigueur</string>
+    <string name="consume_luck_potion">Boire une potion de Bonne Fortune</string>
 
     <!-- Stats loss -->
     <string name="hero_ability_loss">Vous perdez %1$s points d\'HABILETE (il vous en reste %2$s).</string>

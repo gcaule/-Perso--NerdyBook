@@ -54,6 +54,10 @@ public class HeroDBHelper extends SQLiteOpenHelper {
                     DatabaseContract.HeroEntry.COLUMN_LUCK_POTIONS + " INTEGER," +
                     DatabaseContract.HeroEntry.COLUMN_TORCHS + " INTEGER," +
                     DatabaseContract.HeroEntry.COLUMN_GC + " INTEGER," +
+                    DatabaseContract.HeroEntry.COLUMN_MEALS + " INTEGER," +
+                    DatabaseContract.HeroEntry.COLUMN_STUFF1 + " TEXT," +
+                    DatabaseContract.HeroEntry.COLUMN_STUFF2 + " TEXT," +
+                    DatabaseContract.HeroEntry.COLUMN_STUFF3 + " TEXT," +
                     DatabaseContract.HeroEntry.COLUMN_CURRENT_CHAPTER + " INTEGER," +
                     DatabaseContract.HeroEntry.COLUMN_TOTAL_CHAPTERS + " INTEGER);";
 
@@ -79,6 +83,49 @@ public class HeroDBHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_TOTAL_CHAPTERS, totalChapters);
         db.update(TABLE_NAME, contentValues, COLUMN_ID + " = ?", new String[]{heroID});
         db.close();
+    }
+
+
+    //Get current Hero
+    public HeroModel getCurrentHero(String heroID) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME +
+                " WHERE " + COLUMN_ID + " = " + heroID, null);
+
+        HeroModel currentHero = new HeroModel();
+
+        if (cursor.moveToFirst()) {
+            do {
+                currentHero = new HeroModel(
+                        cursor.getString(0),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getString(3),
+                        cursor.getInt(4),
+                        cursor.getInt(5),
+                        cursor.getInt(6),
+                        cursor.getInt(7),
+                        cursor.getInt(8),
+                        cursor.getInt(9),
+                        cursor.getInt(10),
+                        cursor.getInt(11),
+                        cursor.getInt(12),
+                        cursor.getInt(13),
+                        cursor.getInt(14),
+                        cursor.getInt(15),
+                        cursor.getString(16),
+                        cursor.getString(17),
+                        cursor.getString(18),
+                        cursor.getInt(19),
+                        cursor.getInt(20)
+                );
+
+            } while (cursor.moveToNext());
+
+        }
+
+        return currentHero;
+
     }
 
 

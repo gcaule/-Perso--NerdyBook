@@ -26,6 +26,11 @@ public class HeroModel extends DatabaseContract.HeroEntry {
 
     private int torchs;
     private int goldenCoins;
+    private int meals;
+
+    private String stuff1;
+    private String stuff2;
+    private String stuff3;
 
     private int currentChapter;
     private int totalChapters;
@@ -38,7 +43,8 @@ public class HeroModel extends DatabaseContract.HeroEntry {
                      int abilityCurrent, int staminaMax,
                      int staminaCurrent, int luckMax, int luckCurrent,
                      int abilityPotions, int staminaPotions,
-                     int luckPotions, int torchs, int goldenCoins,
+                     int luckPotions, int torchs, int goldenCoins, int meals,
+                     String stuff1, String stuff2, String stuff3,
                      int currentChapter, int totalChapters) {
         this.ID = ID;
         this.adventure = adventure;
@@ -55,6 +61,10 @@ public class HeroModel extends DatabaseContract.HeroEntry {
         this.luckPotions = luckPotions;
         this.torchs = torchs;
         this.goldenCoins = goldenCoins;
+        this.meals = meals;
+        this.stuff1 = stuff1;
+        this.stuff2 = stuff2;
+        this.stuff3 = stuff3;
         this.currentChapter = currentChapter;
         this.totalChapters = totalChapters;
     }
@@ -191,6 +201,42 @@ public class HeroModel extends DatabaseContract.HeroEntry {
 
     public void setGoldenCoins(int goldenCoins) {
         this.goldenCoins = goldenCoins;
+    }
+
+
+    public int getMeals() {
+        return meals;
+    }
+
+    public void setMeals(int meals) {
+        this.meals = meals;
+    }
+
+
+    public String getStuff1() {
+        return stuff1;
+    }
+
+    public void setStuff1(String stuff1) {
+        this.stuff1 = stuff1;
+    }
+
+
+    public String getStuff2() {
+        return stuff2;
+    }
+
+    public void setStuff2(String stuff2) {
+        this.stuff2 = stuff2;
+    }
+
+
+    public String getStuff3() {
+        return stuff3;
+    }
+
+    public void setStuff3(String stuff3) {
+        this.stuff3 = stuff3;
     }
 
 

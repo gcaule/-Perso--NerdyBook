@@ -43,6 +43,7 @@ public class AdventureTalisman extends AppCompatActivity implements NavigationVi
         mToolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         setSupportActionBar(mToolbar);
 
+
         // Drawer Menu
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(

@@ -32,6 +32,11 @@ public class DatabaseContract {
 
         public static final String COLUMN_TORCHS = "torchs";
         public static final String COLUMN_GC = "goldenCoins";
+        public static final String COLUMN_MEALS = "meals";
+
+        public static final String COLUMN_STUFF1 = "stuff1";
+        public static final String COLUMN_STUFF2 = "stuff2";
+        public static final String COLUMN_STUFF3 = "stuff3";
 
         public static final String COLUMN_CURRENT_CHAPTER = "currentChapter";
         public static final String COLUMN_TOTAL_CHAPTERS = "totalChapters";

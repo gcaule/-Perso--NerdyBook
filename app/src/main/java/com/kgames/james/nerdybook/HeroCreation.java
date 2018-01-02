@@ -18,14 +18,23 @@ import com.kgames.james.nerdybook.Hero.HeroDBHelper;
 
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_ABILITY_CURRENT;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_ABILITY_MAX;
+import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_ABILITY_POTIONS;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_ADVENTURE;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_CURRENT_CHAPTER;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_DIFFICULTY;
+import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_GC;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_LUCK_CURRENT;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_LUCK_MAX;
+import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_LUCK_POTIONS;
+import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_MEALS;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_PLAYER_NAME;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_STAMINA_CURRENT;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_STAMINA_MAX;
+import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_STAMINA_POTIONS;
+import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_STUFF1;
+import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_STUFF2;
+import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_STUFF3;
+import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_TORCHS;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_TOTAL_CHAPTERS;
 
 public class HeroCreation extends AppCompatActivity {
@@ -173,6 +182,7 @@ public class HeroCreation extends AppCompatActivity {
             }
         });
 
+
         startAdventure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -190,7 +200,15 @@ public class HeroCreation extends AppCompatActivity {
                 contentValues.put(COLUMN_STAMINA_CURRENT, mStaminaCurrent);
                 contentValues.put(COLUMN_LUCK_MAX, mLuckMax);
                 contentValues.put(COLUMN_LUCK_CURRENT, mLuckCurrent);
-                contentValues.put(COLUMN_CURRENT_CHAPTER, 0);
+                contentValues.put(COLUMN_ABILITY_POTIONS, mAbilityPotions);
+                contentValues.put(COLUMN_STAMINA_POTIONS, mStaminaPotions);
+                contentValues.put(COLUMN_LUCK_POTIONS, mLuckPotions);
+                contentValues.put(COLUMN_TORCHS, 5);
+                contentValues.put(COLUMN_GC, 0);
+                contentValues.put(COLUMN_MEALS, 10);
+                contentValues.put(COLUMN_STUFF1, "Epée");
+                contentValues.put(COLUMN_STUFF2, "Armure de cuir");
+                contentValues.put(COLUMN_STUFF3, "");
                 contentValues.put(COLUMN_TOTAL_CHAPTERS, 0);
                 long heroID = database.insert(DatabaseContract.HeroEntry.TABLE_NAME, null, contentValues);
 
@@ -266,7 +284,7 @@ public class HeroCreation extends AppCompatActivity {
 
         final Button startAdventure = findViewById(R.id.start_adventure);
 
-        difficultyValidate.setOnClickListener(new View.OnClickListener() {
+        potionsValidate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 

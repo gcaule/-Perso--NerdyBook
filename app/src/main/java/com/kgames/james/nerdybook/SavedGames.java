@@ -54,7 +54,11 @@ public class SavedGames extends AppCompatActivity {
                         cursor.getInt(13),
                         cursor.getInt(14),
                         cursor.getInt(15),
-                        cursor.getInt(16)
+                        cursor.getString(16),
+                        cursor.getString(17),
+                        cursor.getString(18),
+                        cursor.getInt(19),
+                        cursor.getInt(20)
                 ));
             } while (cursor.moveToNext());
 
