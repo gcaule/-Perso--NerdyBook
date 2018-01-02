@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_adventure_sheet"
+            android:title="@string/nav_adventure_sheet"/>
+        <item
+            android:id="@+id/nav_current_adventure"
+            android:title="@string/nav_current_adventure"/>
+        <item
+            android:id="@+id/nav_statistics"
+            android:title="@string/nav_statistics"/>
+        <item
+            android:id="@+id/nav_menu"
+            android:title="@string/nav_menu"/>
+    </group>
+
+</menu>
+
+<!-- Example
+
+        <item
+            android:id="@+id/nav_create"
+            android:icon="@drawable/plus3"
+            android:title="@string/nav_create"
+            android:fontFamily="sans-serif"/>
+
+-->
