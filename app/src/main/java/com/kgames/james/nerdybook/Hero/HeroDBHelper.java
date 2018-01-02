@@ -6,14 +6,18 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.kgames.james.nerdybook.R;
+
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_ABILITY_CURRENT;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_ABILITY_MAX;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_CURRENT_CHAPTER;
+import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_GC;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_ID;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_LUCK_CURRENT;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_LUCK_MAX;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_STAMINA_CURRENT;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_STAMINA_MAX;
+import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_STUFF3;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_TOTAL_CHAPTERS;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.TABLE_NAME;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.SQL_DELETE_HERO;
@@ -35,7 +39,8 @@ public class HeroDBHelper extends SQLiteOpenHelper {
     public int mMaxStamina;
     public int mMaxLuck;
 
-
+    public int mCurrentGoldCoins;
+    public int mGoldCoins;
 
     public static final String SQL_CREATE_HERO =
             "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " (" +
@@ -286,6 +291,7 @@ public class HeroDBHelper extends SQLiteOpenHelper {
 
     public void currentLuckGain(String heroID, int currentLuckGain) {
         SQLiteDatabase db = this.getReadableDatabase();
+
         Cursor cursor = db.rawQuery("SELECT " + COLUMN_LUCK_CURRENT +
                 " FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + heroID, null);
 
@@ -293,6 +299,7 @@ public class HeroDBHelper extends SQLiteOpenHelper {
             mCurrentLuck = cursor.getInt(cursor.getColumnIndex(COLUMN_LUCK_CURRENT));
             cursor.close();
         }
+
         Cursor cursorMax = db.rawQuery("SELECT " + COLUMN_LUCK_MAX +
                 " FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + heroID, null);
 
@@ -312,6 +319,67 @@ public class HeroDBHelper extends SQLiteOpenHelper {
             db.update(TABLE_NAME, contentValues, COLUMN_ID + " = ?", new String[]{heroID});
             db.close();
         }
+    }
+
+
+    // Current gold coins, gold coins gain and loss
+    public int currentGoldCoins(String heroID) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT " + COLUMN_GC +
+                " FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + heroID, null);
+
+        if (cursor.moveToFirst()) {
+            mCurrentGoldCoins = cursor.getInt(cursor.getColumnIndex(COLUMN_GC));
+            cursor.close();
+        }
+
+        db.close();
+        return mCurrentGoldCoins;
+    }
+
+    public void goldCoinsLoss(String heroID, int goldCoinsLoss) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT " + COLUMN_GC +
+                " FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + heroID, null);
+
+        if (cursor.moveToFirst()) {
+            mGoldCoins = cursor.getInt(cursor.getColumnIndex(COLUMN_GC));
+            cursor.close();
+        }
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_GC, mGoldCoins - goldCoinsLoss);
+        db.update(TABLE_NAME, contentValues, COLUMN_ID + " = ?", new String[]{heroID});
+        db.close();
+    }
+
+    public void goldCoinGain(String heroID, int goldCoinsGain) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT " + COLUMN_GC +
+                " FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + heroID, null);
+
+        if (cursor.moveToFirst()) {
+            mGoldCoins = cursor.getInt(cursor.getColumnIndex(COLUMN_GC));
+            cursor.close();
+        }
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_GC, mGoldCoins + goldCoinsGain);
+        db.update(TABLE_NAME, contentValues, COLUMN_ID + " = ?", new String[]{heroID});
+        db.close();
+    }
+
+
+    // Stuff3 (Talisman) gain
+    public String stuff3TalismanGain(String heroID, String talisman) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_STUFF3, talisman);
+        db.update(TABLE_NAME, contentValues, COLUMN_ID + " = ?", new String[]{heroID});
+        db.close();
+
+        return String.valueOf(R.string.talisman_stuff3);
     }
 
 
