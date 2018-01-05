@@ -195,6 +195,24 @@ public class HeroDBHelper extends SQLiteOpenHelper {
         }
     }
 
+    // Stamina potion use
+    public void useAbilityPotion(String heroID) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT " + COLUMN_ABILITY_MAX +
+                " FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + heroID, null);
+
+        if (cursor.moveToFirst()) {
+            mCurrentAbility = cursor.getInt(cursor.getColumnIndex(COLUMN_ABILITY_MAX));
+            cursor.close();
+        }
+
+        ContentValues contentValuesCurrent = new ContentValues();
+        contentValuesCurrent.put(COLUMN_ABILITY_CURRENT, mCurrentAbility);
+        db.update(TABLE_NAME, contentValuesCurrent, COLUMN_ID + " = ?", new String[]{heroID});
+        db.close();
+    }
+
 
     // Current Stamina, Stamina gain and Stamina loss
     public int currentStamina(String heroID) {
@@ -257,6 +275,24 @@ public class HeroDBHelper extends SQLiteOpenHelper {
         }
     }
 
+    // Stamina potion use
+    public void useStaminaPotion(String heroID) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT " + COLUMN_STAMINA_MAX +
+                " FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + heroID, null);
+
+        if (cursor.moveToFirst()) {
+            mCurrentStamina = cursor.getInt(cursor.getColumnIndex(COLUMN_STAMINA_MAX));
+            cursor.close();
+        }
+
+        ContentValues contentValuesCurrent = new ContentValues();
+        contentValuesCurrent.put(COLUMN_STAMINA_CURRENT, mCurrentStamina);
+        db.update(TABLE_NAME, contentValuesCurrent, COLUMN_ID + " = ?", new String[]{heroID});
+        db.close();
+    }
+
 
     // Current Luck, Luck gain and Luck loss
     public int currentLuck(String heroID) {
@@ -305,7 +341,7 @@ public class HeroDBHelper extends SQLiteOpenHelper {
 
         if (cursorMax.moveToFirst()) {
             mMaxLuck = cursorMax.getInt(cursor.getColumnIndex(COLUMN_LUCK_MAX));
-            cursor.close();
+            cursorMax.close();
         }
 
         if (mCurrentLuck + currentLuckGain > mMaxLuck) {
@@ -319,6 +355,33 @@ public class HeroDBHelper extends SQLiteOpenHelper {
             db.update(TABLE_NAME, contentValues, COLUMN_ID + " = ?", new String[]{heroID});
             db.close();
         }
+    }
+
+    // Luck potion use
+    public void useLuckPotion(String heroID) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT " + COLUMN_LUCK_CURRENT +
+                " FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + heroID, null);
+
+        Cursor cursorMax = db.rawQuery("SELECT " + COLUMN_LUCK_MAX +
+                " FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + heroID, null);
+
+        if (cursorMax.moveToFirst()) {
+            mMaxLuck = cursorMax.getInt(cursor.getColumnIndex(COLUMN_LUCK_MAX));
+            cursorMax.close();
+            cursor.close();
+        }
+
+            ContentValues contentValuesCurrent = new ContentValues();
+            contentValuesCurrent.put(COLUMN_LUCK_CURRENT, mMaxLuck + 1);
+            db.update(TABLE_NAME, contentValuesCurrent, COLUMN_ID + " = ?", new String[]{heroID});
+            db.close();
+
+            ContentValues contentValuesMax = new ContentValues();
+            contentValuesMax.put(COLUMN_LUCK_MAX, mMaxLuck + 1);
+            db.update(TABLE_NAME, contentValuesMax, COLUMN_ID + " = ?", new String[]{heroID});
+            db.close();
     }
 
 
