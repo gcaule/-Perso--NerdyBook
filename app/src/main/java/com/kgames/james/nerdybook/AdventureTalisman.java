@@ -1,7 +1,6 @@
 package com.kgames.james.nerdybook;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -174,33 +173,54 @@ public class AdventureTalisman extends AppCompatActivity implements NavigationVi
                                     mAbilityCurrent = mHeroDBHelper.currentAbility(mHeroID);
                                     mStaminaCurrent = mHeroDBHelper.currentStamina(mHeroID);
 
-                                    choice1.setVisibility(View.VISIBLE);
-                                    choice2.setVisibility(View.GONE);
-                                    choice3.setVisibility(View.GONE);
-                                    choice4.setVisibility(View.GONE);
+                                    if (mStaminaCurrent - mStaminaLoss <= 0) {
 
-                                    adventureContent.setText(getString(R.string.talisman_chapter5));
-                                    choice1.setText(R.string.talisman_chapter5_choice1);
+                                        statsLoss1.setText(getString(R.string.hero_stamina_null));
 
-                                    statsLoss1.setText(String.format(getString(R.string.hero_ability_loss),
-                                            String.valueOf(mAbilityLoss), String.valueOf(mAbilityCurrent - mAbilityLoss)));
+                                        choice1.setVisibility(View.VISIBLE);
+                                        choice2.setVisibility(View.GONE);
+                                        choice3.setVisibility(View.GONE);
+                                        choice4.setVisibility(View.GONE);
 
-                                    statsLoss2.setText(String.format(getString(R.string.hero_stamina_loss),
-                                            String.valueOf(mStaminaLoss), String.valueOf(mStaminaCurrent - mStaminaLoss)));
+                                        choice1.setText(getString(R.string.hero_death));
 
-                                    choice1.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View view) {
+                                        choice1.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View view) {
 
-                                            mHeroDBHelper.currentAbilityLoss(mHeroID, mAbilityLoss);
-                                            mHeroDBHelper.currentStaminaLoss(mHeroID, mStaminaLoss);
+                                            }
+                                        });
 
-                                            mCurrentChapter = 75;
-                                            mTotalChapters = mTotalChapters + 1;
-                                            mHeroDBHelper.updateChapters(mHeroID, mCurrentChapter, mTotalChapters);
+                                    } else {
 
-                                        }
-                                    });
+                                        choice1.setVisibility(View.VISIBLE);
+                                        choice2.setVisibility(View.GONE);
+                                        choice3.setVisibility(View.GONE);
+                                        choice4.setVisibility(View.GONE);
+
+                                        adventureContent.setText(getString(R.string.talisman_chapter5));
+                                        choice1.setText(R.string.talisman_chapter5_choice1);
+
+                                        statsLoss1.setText(String.format(getString(R.string.hero_ability_loss),
+                                                String.valueOf(mAbilityLoss), String.valueOf(mAbilityCurrent - mAbilityLoss)));
+
+                                        statsLoss2.setText(String.format(getString(R.string.hero_stamina_loss),
+                                                String.valueOf(mStaminaLoss), String.valueOf(mStaminaCurrent - mStaminaLoss)));
+
+                                        choice1.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View view) {
+
+                                                mHeroDBHelper.currentAbilityLoss(mHeroID, mAbilityLoss);
+                                                mHeroDBHelper.currentStaminaLoss(mHeroID, mStaminaLoss);
+
+                                                mCurrentChapter = 75;
+                                                mTotalChapters = mTotalChapters + 1;
+                                                mHeroDBHelper.updateChapters(mHeroID, mCurrentChapter, mTotalChapters);
+
+                                            }
+                                        });
+                                    }
 
                                 }
 
@@ -370,7 +390,7 @@ public class AdventureTalisman extends AppCompatActivity implements NavigationVi
                                     mStaminaLoss = 2;
                                     mStaminaCurrent = mHeroDBHelper.currentStamina(mHeroID);
 
-                                    if (mStaminaCurrent - mStaminaLoss < 0) {
+                                    if (mStaminaCurrent - mStaminaLoss <= 0) {
 
                                         statsLoss1.setText(getString(R.string.hero_stamina_null));
 
@@ -429,7 +449,7 @@ public class AdventureTalisman extends AppCompatActivity implements NavigationVi
 
                                     adventureContent.setText(getString(R.string.talisman_chapter60));
                                     choice1.setText(R.string.talisman_chapter60_choice1);
-                                    choice1.setText(R.string.talisman_chapter60_choice2);
+                                    choice2.setText(R.string.talisman_chapter60_choice2);
 
                                     choice1.setOnClickListener(new View.OnClickListener() {
                                         @Override
@@ -520,6 +540,8 @@ public class AdventureTalisman extends AppCompatActivity implements NavigationVi
                                         @Override
                                         public void onClick(View view) {
 
+                                            mHeroDBHelper.currentLuckLoss(mHeroID, mLuckLoss);
+
                                             mCurrentChapter = 114;
                                             mTotalChapters = mTotalChapters + 1;
                                             mHeroDBHelper.updateChapters(mHeroID, mCurrentChapter, mTotalChapters);
@@ -548,17 +570,17 @@ public class AdventureTalisman extends AppCompatActivity implements NavigationVi
                                     mGoldCoinsGain = 10;
                                     mGoldCoinsCurrent = mHeroDBHelper.currentGoldCoins(mHeroID);
 
+                                    statsLoss1.setText(String.format(getString(R.string.hero_gold_coins_gain),
+                                            String.valueOf(mGoldCoinsGain), String.valueOf(mGoldCoinsCurrent + mGoldCoinsGain)));
+                                    statsLoss2.setText(String.format(getString(R.string.hero_stuff_gain),
+                                            String.valueOf(mStuff3Gain)));
+
                                     choice1.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
 
-                                            mHeroDBHelper.stuff3TalismanGain(mHeroID, mStuff3Gain);
                                             mHeroDBHelper.goldCoinGain(mHeroID, 10);
-
-                                            statsLoss1.setText(String.format(getString(R.string.hero_gold_coins_gain),
-                                                    String.valueOf(mGoldCoinsGain), String.valueOf(mGoldCoinsCurrent + mGoldCoinsGain)));
-                                            statsLoss2.setText(String.format(getString(R.string.hero_stuff_gain),
-                                                    String.valueOf(mStuff3Gain)));
+                                            mHeroDBHelper.stuff3TalismanGain(mHeroID, mStuff3Gain);
 
                                             mCurrentChapter = 125;
                                             mTotalChapters = mTotalChapters + 1;
@@ -585,21 +607,22 @@ public class AdventureTalisman extends AppCompatActivity implements NavigationVi
                                     choice4.setVisibility(View.GONE);
 
                                     adventureContent.setText(getString(R.string.talisman_chapter114));
+                                    choice1.setText(R.string.talisman_chapter114_choice1);
+
+                                    mGoldCoinsGain = 10;
+                                    mGoldCoinsCurrent = mHeroDBHelper.currentGoldCoins(mHeroID);
 
                                     statsLoss1.setText(String.format(getString(R.string.hero_gold_coins_gain),
                                             String.valueOf(mGoldCoinsGain), String.valueOf(mGoldCoinsCurrent + mGoldCoinsGain)));
                                     statsLoss2.setText(String.format(getString(R.string.hero_stuff_gain),
                                             mStuff3Gain));
 
-                                    mGoldCoinsGain = 10;
-                                    mGoldCoinsCurrent = mHeroDBHelper.currentGoldCoins(mHeroID);
-
                                     choice1.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
 
-                                            mHeroDBHelper.stuff3TalismanGain(mHeroID, mStuff3Gain);
                                             mHeroDBHelper.goldCoinGain(mHeroID, 10);
+                                            mHeroDBHelper.stuff3TalismanGain(mHeroID, mStuff3Gain);
 
                                             mCurrentChapter = 125;
                                             mTotalChapters = mTotalChapters + 1;
