@@ -117,10 +117,12 @@
     <string name="hero_stamina_null">Vous perdez %1$s points d\'ENDURANCE (et il ne vous en reste plus).</string>
 
     <string name="hero_luck_loss">Vous perdez %1$s points de CHANCE (il vous en reste %2$s).</string>
+    <string name="hero_luck_play">Vous avez tenté votre chance - il ne vous reste plus que %1$s points de CHANCE</string>
     <string name="hero_luck_null">Vous perdez %1$s points de CHANCE (et il ne vous en reste plus).</string>
 
     <string name="hero_gold_coins_gain">Vous gagnez %1$s pièces d\'or (en tout, vous en avez %2$s).</string>
     <string name="hero_gold_coins_loss">Vous dépensez %1$s pièces d\'or (il vous en reste %2$s).</string>
+    <string name="hero_gold_coins_loss_full">Vous avez perdu toutes vos pièces d\'or.</string>
     <string name="hero_gold_coins_null">Vous dépensez %1$s pièces d\'or (et il ne vous en reste plus).</string>
 
     <string name="hero_stuff_gain">L\'équipement %1$s est ajouté à votre inventaire.</string>

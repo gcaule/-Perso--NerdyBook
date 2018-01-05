@@ -373,15 +373,50 @@ public class HeroDBHelper extends SQLiteOpenHelper {
             cursor.close();
         }
 
-            ContentValues contentValuesCurrent = new ContentValues();
-            contentValuesCurrent.put(COLUMN_LUCK_CURRENT, mMaxLuck + 1);
-            db.update(TABLE_NAME, contentValuesCurrent, COLUMN_ID + " = ?", new String[]{heroID});
-            db.close();
+        ContentValues contentValuesCurrent = new ContentValues();
+        contentValuesCurrent.put(COLUMN_LUCK_CURRENT, mMaxLuck + 1);
+        db.update(TABLE_NAME, contentValuesCurrent, COLUMN_ID + " = ?", new String[]{heroID});
+        db.close();
 
-            ContentValues contentValuesMax = new ContentValues();
-            contentValuesMax.put(COLUMN_LUCK_MAX, mMaxLuck + 1);
-            db.update(TABLE_NAME, contentValuesMax, COLUMN_ID + " = ?", new String[]{heroID});
-            db.close();
+        ContentValues contentValuesMax = new ContentValues();
+        contentValuesMax.put(COLUMN_LUCK_MAX, mMaxLuck + 1);
+        db.update(TABLE_NAME, contentValuesMax, COLUMN_ID + " = ?", new String[]{heroID});
+        db.close();
+    }
+
+    // Are you lucky ?
+    boolean isHeroLucky (String heroID) {
+
+        boolean gotLuck = false;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT " + COLUMN_LUCK_CURRENT +
+                " FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + heroID, null);
+
+        if (cursor.moveToFirst()) {
+            mCurrentLuck = cursor.getInt(cursor.getColumnIndex(COLUMN_LUCK_CURRENT));
+            cursor.close();
+        }
+
+        ContentValues contentValuesCurrent = new ContentValues();
+        contentValuesCurrent.put(COLUMN_LUCK_CURRENT, mCurrentLuck - 1);
+        db.update(TABLE_NAME, contentValuesCurrent, COLUMN_ID + " = ?", new String[]{heroID});
+        db.close();
+
+        int firstDice = (int) ((6 * Math.random()) + 1);
+        int secondDice = (int) ((6 * Math.random()) + 1);
+
+        int fate = firstDice + secondDice;
+
+        if (fate <= mCurrentLuck) {
+            gotLuck = true;
+        } else if (fate > mCurrentLuck) {
+            gotLuck = false;
+        }
+
+        return gotLuck;
+
     }
 
 
