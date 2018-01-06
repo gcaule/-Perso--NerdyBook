@@ -30,9 +30,12 @@ public class AdventureTalisman extends AppCompatActivity implements NavigationVi
     int mStaminaCurrent;
     int mLuckLoss;
     int mLuckCurrent;
+    int mGoldCoinsLoss;
     int mGoldCoinsCurrent;
     int mGoldCoinsGain;
     String mStuff3Gain;
+
+    boolean mLuckOfFate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +80,7 @@ public class AdventureTalisman extends AppCompatActivity implements NavigationVi
         final TextView adventureContent = findViewById(R.id.adventure_content);
         final TextView statsLoss1 = findViewById(R.id.stats_loss1);
         final TextView statsLoss2 = findViewById(R.id.stats_loss2);
+        final TextView statsLoss3 = findViewById(R.id.stats_loss3);
 
         //adventureContent.setTypeface(mainFont);
 
@@ -476,6 +480,56 @@ public class AdventureTalisman extends AppCompatActivity implements NavigationVi
 
                                 }
 
+                                if (mCurrentChapter == 63) {
+
+                                    mToolbar.setTitle(String.format(getString(R.string.current_chapter),
+                                            String.valueOf(mTotalChapters)));
+
+                                    choice1.setVisibility(View.VISIBLE);
+                                    choice2.setVisibility(View.VISIBLE);
+                                    choice3.setVisibility(View.VISIBLE);
+                                    choice4.setVisibility(View.GONE);
+
+                                    adventureContent.setText(getString(R.string.talisman_chapter63));
+                                    choice1.setText(R.string.talisman_chapter63_choice1);
+                                    choice2.setText(R.string.talisman_chapter63_choice2);
+                                    choice2.setText(R.string.talisman_chapter63_choice3);
+
+                                    choice1.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+
+                                            mCurrentChapter = 214;
+                                            mTotalChapters = mTotalChapters + 1;
+                                            mHeroDBHelper.updateChapters(mHeroID, mCurrentChapter, mTotalChapters);
+
+                                        }
+                                    });
+
+                                    choice2.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+
+                                            mCurrentChapter = 282;
+                                            mTotalChapters = mTotalChapters + 1;
+                                            mHeroDBHelper.updateChapters(mHeroID, mCurrentChapter, mTotalChapters);
+
+                                        }
+                                    });
+
+                                    choice3.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+
+                                            mCurrentChapter = 227;
+                                            mTotalChapters = mTotalChapters + 1;
+                                            mHeroDBHelper.updateChapters(mHeroID, mCurrentChapter, mTotalChapters);
+
+                                        }
+                                    });
+
+                                }
+
                                 if (mCurrentChapter == 70) {
 
                                     mToolbar.setTitle(String.format(getString(R.string.current_chapter),
@@ -499,7 +553,6 @@ public class AdventureTalisman extends AppCompatActivity implements NavigationVi
 
                                         }
                                     });
-
 
                                     choice2.setOnClickListener(new View.OnClickListener() {
                                         @Override
@@ -654,6 +707,264 @@ public class AdventureTalisman extends AppCompatActivity implements NavigationVi
                                         public void onClick(View view) {
 
                                             mCurrentChapter = 185;
+                                            mTotalChapters = mTotalChapters + 1;
+                                            mHeroDBHelper.updateChapters(mHeroID, mCurrentChapter, mTotalChapters);
+
+                                        }
+                                    });
+
+                                }
+
+                                if (mCurrentChapter == 134) {
+
+                                    mToolbar.setTitle(String.format(getString(R.string.current_chapter),
+                                            String.valueOf(mTotalChapters)));
+
+                                    choice1.setVisibility(View.VISIBLE);
+                                    choice2.setVisibility(View.VISIBLE);
+                                    choice3.setVisibility(View.VISIBLE);
+                                    choice4.setVisibility(View.VISIBLE);
+
+                                    adventureContent.setText(getString(R.string.talisman_chapter134));
+                                    choice1.setText(R.string.talisman_chapter134_choice1);
+                                    choice2.setText(R.string.talisman_chapter134_choice2);
+                                    choice3.setText(R.string.talisman_chapter134_choice3);
+                                    choice4.setText(R.string.talisman_chapter134_choice4);
+
+                                    choice1.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+
+                                            mCurrentChapter = 68;
+                                            mTotalChapters = mTotalChapters + 1;
+                                            mHeroDBHelper.updateChapters(mHeroID, mCurrentChapter, mTotalChapters);
+
+                                        }
+                                    });
+
+                                    choice2.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+
+                                            mCurrentChapter = 214;
+                                            mTotalChapters = mTotalChapters + 1;
+                                            mHeroDBHelper.updateChapters(mHeroID, mCurrentChapter, mTotalChapters);
+
+                                        }
+                                    });
+
+                                    choice3.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+
+                                            mCurrentChapter = 63;
+                                            mTotalChapters = mTotalChapters + 1;
+                                            mHeroDBHelper.updateChapters(mHeroID, mCurrentChapter, mTotalChapters);
+
+                                        }
+                                    });
+
+                                    choice4.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+
+                                            mCurrentChapter = 148;
+                                            mTotalChapters = mTotalChapters + 1;
+                                            mHeroDBHelper.updateChapters(mHeroID, mCurrentChapter, mTotalChapters);
+
+                                        }
+                                    });
+
+                                }
+
+                                if (mCurrentChapter == 148) {
+
+                                    mToolbar.setTitle(String.format(getString(R.string.current_chapter),
+                                            String.valueOf(mTotalChapters)));
+
+                                    statsLoss1.setVisibility(View.VISIBLE);
+
+                                    choice1.setVisibility(View.VISIBLE);
+                                    choice2.setVisibility(View.GONE);
+                                    choice3.setVisibility(View.GONE);
+                                    choice4.setVisibility(View.GONE);
+
+                                    adventureContent.setText(getString(R.string.talisman_chapter148));
+                                    choice1.setText(R.string.talisman_chapter148_choice1);
+
+                                    mGoldCoinsCurrent = mHeroDBHelper.currentGoldCoins(mHeroID);
+                                    mGoldCoinsLoss = mGoldCoinsCurrent;
+
+                                    statsLoss1.setText(getString(R.string.hero_gold_coins_loss_full));
+
+                                    choice1.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+
+                                            mHeroDBHelper.goldCoinsLoss(mHeroID, mGoldCoinsLoss);
+
+                                            mCurrentChapter = 203;
+                                            mTotalChapters = mTotalChapters + 1;
+                                            mHeroDBHelper.updateChapters(mHeroID, mCurrentChapter, mTotalChapters);
+
+                                        }
+                                    });
+
+                                }
+
+                                if (mCurrentChapter == 185) {
+
+                                    mToolbar.setTitle(String.format(getString(R.string.current_chapter),
+                                            String.valueOf(mTotalChapters)));
+
+                                    statsLoss1.setVisibility(View.GONE);
+                                    statsLoss2.setVisibility(View.GONE);
+
+                                    choice1.setVisibility(View.VISIBLE);
+                                    choice2.setVisibility(View.VISIBLE);
+                                    choice3.setVisibility(View.GONE);
+                                    choice4.setVisibility(View.GONE);
+
+                                    adventureContent.setText(getString(R.string.talisman_chapter185));
+                                    choice1.setText(R.string.talisman_chapter185_choice1);
+                                    choice2.setText(R.string.talisman_chapter185_choice2);
+
+                                    choice1.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+
+                                            mCurrentChapter = 256;
+                                            mTotalChapters = mTotalChapters + 1;
+                                            mHeroDBHelper.updateChapters(mHeroID, mCurrentChapter, mTotalChapters);
+
+                                        }
+                                    });
+
+                                    choice2.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+
+                                            mCurrentChapter = 134;
+                                            mTotalChapters = mTotalChapters + 1;
+                                            mHeroDBHelper.updateChapters(mHeroID, mCurrentChapter, mTotalChapters);
+
+                                        }
+                                    });
+
+                                }
+
+                                if (mCurrentChapter == 203) {
+
+                                    mToolbar.setTitle(String.format(getString(R.string.current_chapter),
+                                            String.valueOf(mTotalChapters)));
+
+                                    statsLoss1.setVisibility(View.GONE);
+
+                                    choice1.setVisibility(View.VISIBLE);
+                                    choice2.setVisibility(View.GONE);
+                                    choice3.setVisibility(View.GONE);
+                                    choice4.setVisibility(View.GONE);
+
+                                    adventureContent.setText(getString(R.string.talisman_chapter203));
+                                    choice1.setText(R.string.hero_play_luck);
+
+                                    choice1.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+
+                                            boolean luckOfFate = mHeroDBHelper.isHeroLucky(mHeroID);
+
+                                            if (luckOfFate) {
+
+                                                mToolbar.setTitle(String.format(getString(R.string.current_chapter),
+                                                        String.valueOf(mTotalChapters)));
+
+                                                choice1.setVisibility(View.VISIBLE);
+                                                choice2.setVisibility(View.GONE);
+                                                choice3.setVisibility(View.GONE);
+                                                choice4.setVisibility(View.GONE);
+
+                                                adventureContent.setText(getString(R.string.talisman_chapter203));
+
+                                                choice1.setText(R.string.talisman_chapter203_choice1);
+                                                choice1.setOnClickListener(new View.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(View view) {
+
+                                                        mCurrentChapter = 36;
+                                                        mTotalChapters = mTotalChapters + 1;
+                                                        mHeroDBHelper.updateChapters(mHeroID, mCurrentChapter, mTotalChapters);
+                                                    }
+                                                });
+
+                                            } else {
+
+                                                mToolbar.setTitle(String.format(getString(R.string.current_chapter),
+                                                        String.valueOf(mTotalChapters)));
+
+                                                choice1.setVisibility(View.VISIBLE);
+                                                choice2.setVisibility(View.GONE);
+                                                choice3.setVisibility(View.GONE);
+                                                choice4.setVisibility(View.GONE);
+
+                                                adventureContent.setText(getString(R.string.talisman_chapter203));
+
+                                                choice1.setText(R.string.talisman_chapter203_choice2);
+                                                choice1.setOnClickListener(new View.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(View v) {
+
+                                                        mCurrentChapter = 319;
+                                                        mTotalChapters = mTotalChapters + 1;
+                                                        mHeroDBHelper.updateChapters(mHeroID, mCurrentChapter, mTotalChapters);
+                                                    }
+                                                });
+
+                                            }
+                                        }
+                                    });
+                                }
+
+                                if (mCurrentChapter == 214) {
+
+                                    mToolbar.setTitle(String.format(getString(R.string.current_chapter),
+                                            String.valueOf(mTotalChapters)));
+
+                                    choice1.setVisibility(View.VISIBLE);
+                                    choice2.setVisibility(View.GONE);
+                                    choice3.setVisibility(View.GONE);
+                                    choice4.setVisibility(View.GONE);
+
+                                    adventureContent.setText(getString(R.string.talisman_chapter214));
+                                    choice1.setText(R.string.talisman_chapter214_choice1);
+
+                                    choice1.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+
+                                        }
+                                    });
+
+                                }
+
+                                if (mCurrentChapter == 227) {
+
+                                    mToolbar.setTitle(String.format(getString(R.string.current_chapter),
+                                            String.valueOf(mTotalChapters)));
+
+                                    choice1.setVisibility(View.VISIBLE);
+                                    choice2.setVisibility(View.GONE);
+                                    choice3.setVisibility(View.GONE);
+                                    choice4.setVisibility(View.GONE);
+
+                                    adventureContent.setText(getString(R.string.talisman_chapter227));
+                                    choice1.setText(R.string.talisman_chapter227_choice1);
+
+                                    choice1.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+
+                                            mCurrentChapter = 203;
                                             mTotalChapters = mTotalChapters + 1;
                                             mHeroDBHelper.updateChapters(mHeroID, mCurrentChapter, mTotalChapters);
 

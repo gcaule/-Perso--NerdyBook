@@ -385,7 +385,7 @@ public class HeroDBHelper extends SQLiteOpenHelper {
     }
 
     // Are you lucky ?
-    boolean isHeroLucky (String heroID) {
+    public boolean isHeroLucky (String heroID) {
 
         boolean gotLuck = false;
 
@@ -411,8 +411,6 @@ public class HeroDBHelper extends SQLiteOpenHelper {
 
         if (fate <= mCurrentLuck) {
             gotLuck = true;
-        } else if (fate > mCurrentLuck) {
-            gotLuck = false;
         }
 
         return gotLuck;
