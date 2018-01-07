@@ -36,6 +36,7 @@ public class AdventureTalisman extends AppCompatActivity implements NavigationVi
     int mGoldCoinsGain;
     int mMealsCurrent;
     int mMealsUse;
+    int mMealsLoss;
     String mStuff3Gain;
 
     @Override
@@ -1097,7 +1098,8 @@ public class AdventureTalisman extends AppCompatActivity implements NavigationVi
                                         @Override
                                         public void onClick(View view) {
 
-                                            mHeroDBHelper.mealLoss(mHeroID, 1);
+                                            mMealsLoss = 1;
+                                            mHeroDBHelper.mealLoss(mHeroID, mMealsLoss);
 
                                             mCurrentChapter = 384;
                                             mTotalChapters = mTotalChapters + 1;

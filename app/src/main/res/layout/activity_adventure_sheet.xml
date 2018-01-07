@@ -270,7 +270,8 @@
                 android:layout_weight="1"
                 android:id="@+id/ability_potions"
                 android:text="@string/ability_potions"
-                android:gravity="center_horizontal" />
+                android:gravity="center_horizontal"
+                android:visibility="gone"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -278,7 +279,8 @@
                 android:layout_weight="1"
                 android:id="@+id/stamina_potions"
                 android:text="@string/stamina_potions"
-                android:gravity="center_horizontal"/>
+                android:gravity="center_horizontal"
+                android:visibility="gone"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -286,7 +288,8 @@
                 android:layout_weight="1"
                 android:id="@+id/luck_potions"
                 android:text="@string/luck_potions"
-                android:gravity="center_horizontal"/>
+                android:gravity="center_horizontal"
+                android:visibility="gone"/>
 
         </LinearLayout>
 
@@ -300,21 +303,24 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:id="@+id/ability_potions_value"
-                android:gravity="center_horizontal"/>
+                android:gravity="center_horizontal"
+                android:visibility="gone"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:id="@+id/stamina_potions_value"
-                android:gravity="center_horizontal"/>
+                android:gravity="center_horizontal"
+                android:visibility="gone"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:id="@+id/luck_potions_value"
-                android:gravity="center_horizontal"/>
+                android:gravity="center_horizontal"
+                android:visibility="gone"/>
 
         </LinearLayout>
 
@@ -328,21 +334,24 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:id="@+id/consume_ability_potion"
-                android:text="@string/consume_ability_potion"/>
+                android:text="@string/consume_ability_potion"
+                android:visibility="gone"/>
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:id="@+id/consume_stamina_potion"
-                android:text="@string/consume_stamina_potion"/>
+                android:text="@string/consume_stamina_potion"
+                android:visibility="gone"/>
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:id="@+id/consume_luck_potion"
-                android:text="@string/consume_luck_potion"/>
+                android:text="@string/consume_luck_potion"
+                android:visibility="gone"/>
 
         </LinearLayout>
 

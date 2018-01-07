@@ -45,9 +45,9 @@ public class AdventureSheet extends AppCompatActivity implements NavigationView.
         TextView adventureName = findViewById(R.id.adventure_name);
         TextView heroName = findViewById(R.id.hero_name);
 
-        TextView abilityValues = findViewById(R.id.ability_value);
-        TextView staminaValues = findViewById(R.id.stamina_value);
-        TextView luckValues = findViewById(R.id.luck_value);
+        final TextView abilityValues = findViewById(R.id.ability_value);
+        final TextView staminaValues = findViewById(R.id.stamina_value);
+        final TextView luckValues = findViewById(R.id.luck_value);
 
         TextView stuff1 = findViewById(R.id.stuff1);
         TextView stuff2 = findViewById(R.id.stuff2);
@@ -61,13 +61,13 @@ public class AdventureSheet extends AppCompatActivity implements NavigationView.
         TextView staminaPotionsText = findViewById(R.id.stamina_potions);
         TextView luckPotionsText = findViewById(R.id.luck_potions);
 
-        TextView abilityPotions = findViewById(R.id.ability_potions_value);
-        TextView staminaPotions = findViewById(R.id.stamina_potions_value);
-        TextView luckPotions = findViewById(R.id.luck_potions_value);
+        final TextView abilityPotions = findViewById(R.id.ability_potions_value);
+        final TextView staminaPotions = findViewById(R.id.stamina_potions_value);
+        final TextView luckPotions = findViewById(R.id.luck_potions_value);
 
-        Button abilityPotionUse = findViewById(R.id.consume_ability_potion);
-        Button staminaPotionUse = findViewById(R.id.consume_stamina_potion);
-        Button luckPotionUse = findViewById(R.id.consume_luck_potion);
+        final Button abilityPotionUse = findViewById(R.id.consume_ability_potion);
+        final Button staminaPotionUse = findViewById(R.id.consume_stamina_potion);
+        final Button luckPotionUse = findViewById(R.id.consume_luck_potion);
 
 
         mHeroDBHelper = new HeroDBHelper(AdventureSheet.this);
@@ -111,22 +111,79 @@ public class AdventureSheet extends AppCompatActivity implements NavigationView.
         }
 
 
-        if (mCurrentHero.getAbilityPotions() == 0) {
-            abilityPotionsText.setVisibility(GONE);
-            abilityPotions.setVisibility(GONE);
-            abilityPotionUse.setVisibility(GONE);
+        if (mCurrentHero.getAbilityPotions() != 0) {
+            abilityPotionsText.setVisibility(View.VISIBLE);
+            abilityPotions.setVisibility(View.VISIBLE);
+            abilityPotionUse.setVisibility(View.VISIBLE);
+
+            abilityPotionUse.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    mHeroDBHelper.useAbilityPotion(mHeroID);
+
+                    mHeroDBHelper = new HeroDBHelper(AdventureSheet.this);
+                    mCurrentHero = mHeroDBHelper.getCurrentHero(mHeroID);
+
+                    abilityValues.setText(String.format(getString(R.string.ability_value),
+                            String.valueOf(mCurrentHero.getAbilityCurrent()), String.valueOf(mCurrentHero.getAbilityMax())));
+
+                    abilityPotions.setText(String.valueOf(mCurrentHero.getAbilityPotions()));
+
+                    if (mHeroDBHelper.currentAbilityPotions(mHeroID) == 0)
+                        abilityPotionUse.setEnabled(false);
+                }
+            });
         }
 
-        if (mCurrentHero.getStaminaPotions() == 0) {
-            staminaPotionsText.setVisibility(GONE);
-            staminaPotions.setVisibility(GONE);
-            staminaPotionUse.setVisibility(GONE);
+        if (mCurrentHero.getStaminaPotions() != 0) {
+            staminaPotionsText.setVisibility(View.VISIBLE);
+            staminaPotions.setVisibility(View.VISIBLE);
+            staminaPotionUse.setVisibility(View.VISIBLE);
+
+            staminaPotionUse.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    mHeroDBHelper.useStaminaPotion(mHeroID);
+
+                    mHeroDBHelper = new HeroDBHelper(AdventureSheet.this);
+                    mCurrentHero = mHeroDBHelper.getCurrentHero(mHeroID);
+
+                    staminaValues.setText(String.format(getString(R.string.stamina_value),
+                            String.valueOf(mCurrentHero.getStaminaCurrent()), String.valueOf(mCurrentHero.getStaminaMax())));
+
+                    staminaPotions.setText(String.valueOf(mCurrentHero.getStaminaPotions()));
+
+                    if (mHeroDBHelper.currentStaminaPotions(mHeroID) == 0)
+                        staminaPotionUse.setEnabled(false);
+                }
+            });
         }
 
-        if (mCurrentHero.getLuckPotions() == 0) {
-            luckPotionsText.setVisibility(GONE);
-            luckPotions.setVisibility(GONE);
-            luckPotionUse.setVisibility(GONE);
+        if (mCurrentHero.getLuckPotions() != 0) {
+            luckPotionsText.setVisibility(View.VISIBLE);
+            luckPotions.setVisibility(View.VISIBLE);
+            luckPotionUse.setVisibility(View.VISIBLE);
+
+            abilityPotionUse.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    mHeroDBHelper.useLuckPotion(mHeroID);
+
+                    mHeroDBHelper = new HeroDBHelper(AdventureSheet.this);
+                    mCurrentHero = mHeroDBHelper.getCurrentHero(mHeroID);
+
+                    luckValues.setText(String.format(getString(R.string.luck_value),
+                            String.valueOf(mCurrentHero.getLuckCurrent()), String.valueOf(mCurrentHero.getLuckMax())));
+
+                    luckPotions.setText(String.valueOf(mCurrentHero.getLuckPotions()));
+
+                    if (mHeroDBHelper.currentLuckPotions(mHeroID) == 0)
+                        luckPotionUse.setEnabled(false);
+                }
+            });
         }
 
 
