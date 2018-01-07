@@ -6,14 +6,19 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.kgames.james.nerdybook.R;
+
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_ABILITY_CURRENT;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_ABILITY_MAX;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_CURRENT_CHAPTER;
+import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_GC;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_ID;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_LUCK_CURRENT;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_LUCK_MAX;
+import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_MEALS;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_STAMINA_CURRENT;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_STAMINA_MAX;
+import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_STUFF3;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.COLUMN_TOTAL_CHAPTERS;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.HeroEntry.TABLE_NAME;
 import static com.kgames.james.nerdybook.Hero.DatabaseContract.SQL_DELETE_HERO;
@@ -35,7 +40,9 @@ public class HeroDBHelper extends SQLiteOpenHelper {
     public int mMaxStamina;
     public int mMaxLuck;
 
-
+    public int mCurrentGoldCoins;
+    public int mGoldCoins;
+    public int mMeals;
 
     public static final String SQL_CREATE_HERO =
             "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " (" +
@@ -132,6 +139,7 @@ public class HeroDBHelper extends SQLiteOpenHelper {
     //Current Ability, Ability gain and Ability loss
     public int currentAbility(String heroID) {
         SQLiteDatabase db = this.getReadableDatabase();
+
         Cursor cursor = db.rawQuery("SELECT " + COLUMN_ABILITY_CURRENT +
                 " FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + heroID, null);
 
@@ -146,6 +154,7 @@ public class HeroDBHelper extends SQLiteOpenHelper {
 
     public void currentAbilityLoss(String heroID, int currentAbilityLoss) {
         SQLiteDatabase db = this.getReadableDatabase();
+
         Cursor cursor = db.rawQuery("SELECT " + COLUMN_ABILITY_CURRENT +
                 " FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + heroID, null);
 
@@ -154,14 +163,25 @@ public class HeroDBHelper extends SQLiteOpenHelper {
             cursor.close();
         }
 
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(COLUMN_ABILITY_CURRENT, mCurrentAbility - currentAbilityLoss);
-        db.update(TABLE_NAME, contentValues, COLUMN_ID + " = ?", new String[]{heroID});
-        db.close();
+        if (mCurrentAbility - currentAbilityLoss <= 0) {
+
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(COLUMN_ABILITY_CURRENT, 0);
+            db.update(TABLE_NAME, contentValues, COLUMN_ID + " = ?", new String[]{heroID});
+            db.close();
+
+        } else if (mCurrentAbility - currentAbilityLoss > 0) {
+
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(COLUMN_ABILITY_CURRENT, mCurrentAbility - currentAbilityLoss);
+            db.update(TABLE_NAME, contentValues, COLUMN_ID + " = ?", new String[]{heroID});
+            db.close();
+        }
     }
 
     public void currentAbilityGain(String heroID, int currentAbilityGain) {
         SQLiteDatabase db = this.getReadableDatabase();
+
         Cursor cursor = db.rawQuery("SELECT " + COLUMN_ABILITY_CURRENT +
                 " FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + heroID, null);
 
@@ -169,11 +189,12 @@ public class HeroDBHelper extends SQLiteOpenHelper {
             mCurrentAbility = cursor.getInt(cursor.getColumnIndex(COLUMN_ABILITY_CURRENT));
             cursor.close();
         }
+
         Cursor cursorMax = db.rawQuery("SELECT " + COLUMN_ABILITY_MAX +
                 " FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + heroID, null);
 
         if (cursorMax.moveToFirst()) {
-            mMaxAbility = cursorMax.getInt(cursor.getColumnIndex(COLUMN_ABILITY_MAX));
+            mMaxAbility = cursorMax.getInt(cursorMax.getColumnIndex(COLUMN_ABILITY_MAX));
             cursor.close();
         }
 
@@ -190,10 +211,29 @@ public class HeroDBHelper extends SQLiteOpenHelper {
         }
     }
 
+    // Stamina potion use
+    public void useAbilityPotion(String heroID) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT " + COLUMN_ABILITY_MAX +
+                " FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + heroID, null);
+
+        if (cursor.moveToFirst()) {
+            mCurrentAbility = cursor.getInt(cursor.getColumnIndex(COLUMN_ABILITY_MAX));
+            cursor.close();
+        }
+
+        ContentValues contentValuesCurrent = new ContentValues();
+        contentValuesCurrent.put(COLUMN_ABILITY_CURRENT, mCurrentAbility);
+        db.update(TABLE_NAME, contentValuesCurrent, COLUMN_ID + " = ?", new String[]{heroID});
+        db.close();
+    }
+
 
     // Current Stamina, Stamina gain and Stamina loss
     public int currentStamina(String heroID) {
         SQLiteDatabase db = this.getReadableDatabase();
+
         Cursor cursor = db.rawQuery("SELECT " + COLUMN_STAMINA_CURRENT +
                 " FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + heroID, null);
 
@@ -208,6 +248,7 @@ public class HeroDBHelper extends SQLiteOpenHelper {
 
     public void currentStaminaLoss(String heroID, int currentStaminaLoss) {
         SQLiteDatabase db = this.getReadableDatabase();
+
         Cursor cursor = db.rawQuery("SELECT " + COLUMN_STAMINA_CURRENT +
                 " FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + heroID, null);
 
@@ -216,14 +257,25 @@ public class HeroDBHelper extends SQLiteOpenHelper {
             cursor.close();
         }
 
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(COLUMN_STAMINA_CURRENT, mCurrentStamina - currentStaminaLoss);
-        db.update(TABLE_NAME, contentValues, COLUMN_ID + " = ?", new String[]{heroID});
-        db.close();
+        if (mCurrentStamina - currentStaminaLoss <= 0) {
+
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(COLUMN_STAMINA_CURRENT, 0);
+            db.update(TABLE_NAME, contentValues, COLUMN_ID + " = ?", new String[]{heroID});
+            db.close();
+
+        } else if (mCurrentStamina - currentStaminaLoss > 0) {
+
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(COLUMN_STAMINA_CURRENT, mCurrentStamina - currentStaminaLoss);
+            db.update(TABLE_NAME, contentValues, COLUMN_ID + " = ?", new String[]{heroID});
+            db.close();
+        }
     }
 
     public void currentStaminaGain(String heroID, int currentStaminaGain) {
         SQLiteDatabase db = this.getReadableDatabase();
+
         Cursor cursor = db.rawQuery("SELECT " + COLUMN_STAMINA_CURRENT +
                 " FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + heroID, null);
 
@@ -231,11 +283,12 @@ public class HeroDBHelper extends SQLiteOpenHelper {
             mCurrentStamina = cursor.getInt(cursor.getColumnIndex(COLUMN_STAMINA_CURRENT));
             cursor.close();
         }
+
         Cursor cursorMax = db.rawQuery("SELECT " + COLUMN_STAMINA_MAX +
                 " FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + heroID, null);
 
         if (cursorMax.moveToFirst()) {
-            mMaxStamina = cursorMax.getInt(cursor.getColumnIndex(COLUMN_STAMINA_MAX));
+            mMaxStamina = cursorMax.getInt(cursorMax.getColumnIndex(COLUMN_STAMINA_MAX));
             cursor.close();
         }
 
@@ -252,10 +305,29 @@ public class HeroDBHelper extends SQLiteOpenHelper {
         }
     }
 
+    // Stamina potion use
+    public void useStaminaPotion(String heroID) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT " + COLUMN_STAMINA_MAX +
+                " FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + heroID, null);
+
+        if (cursor.moveToFirst()) {
+            mCurrentStamina = cursor.getInt(cursor.getColumnIndex(COLUMN_STAMINA_MAX));
+            cursor.close();
+        }
+
+        ContentValues contentValuesCurrent = new ContentValues();
+        contentValuesCurrent.put(COLUMN_STAMINA_CURRENT, mCurrentStamina);
+        db.update(TABLE_NAME, contentValuesCurrent, COLUMN_ID + " = ?", new String[]{heroID});
+        db.close();
+    }
+
 
     // Current Luck, Luck gain and Luck loss
     public int currentLuck(String heroID) {
         SQLiteDatabase db = this.getReadableDatabase();
+
         Cursor cursor = db.rawQuery("SELECT " + COLUMN_LUCK_CURRENT +
                 " FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + heroID, null);
 
@@ -270,6 +342,7 @@ public class HeroDBHelper extends SQLiteOpenHelper {
 
     public void currentLuckLoss(String heroID, int currentLuckLoss) {
         SQLiteDatabase db = this.getReadableDatabase();
+
         Cursor cursor = db.rawQuery("SELECT " + COLUMN_LUCK_CURRENT +
                 " FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + heroID, null);
 
@@ -278,14 +351,26 @@ public class HeroDBHelper extends SQLiteOpenHelper {
             cursor.close();
         }
 
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(COLUMN_LUCK_CURRENT, mCurrentLuck - currentLuckLoss);
-        db.update(TABLE_NAME, contentValues, COLUMN_ID + " = ?", new String[]{heroID});
-        db.close();
+        if (mCurrentLuck - currentLuckLoss <= 0) {
+
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(COLUMN_LUCK_CURRENT, 0);
+            db.update(TABLE_NAME, contentValues, COLUMN_ID + " = ?", new String[]{heroID});
+            db.close();
+
+        } else if (mCurrentLuck - currentLuckLoss > 0) {
+
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(COLUMN_LUCK_CURRENT, mCurrentLuck - currentLuckLoss);
+            db.update(TABLE_NAME, contentValues, COLUMN_ID + " = ?", new String[]{heroID});
+            db.close();
+        }
+
     }
 
     public void currentLuckGain(String heroID, int currentLuckGain) {
         SQLiteDatabase db = this.getReadableDatabase();
+
         Cursor cursor = db.rawQuery("SELECT " + COLUMN_LUCK_CURRENT +
                 " FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + heroID, null);
 
@@ -293,12 +378,13 @@ public class HeroDBHelper extends SQLiteOpenHelper {
             mCurrentLuck = cursor.getInt(cursor.getColumnIndex(COLUMN_LUCK_CURRENT));
             cursor.close();
         }
+
         Cursor cursorMax = db.rawQuery("SELECT " + COLUMN_LUCK_MAX +
                 " FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + heroID, null);
 
         if (cursorMax.moveToFirst()) {
-            mMaxLuck = cursorMax.getInt(cursor.getColumnIndex(COLUMN_LUCK_MAX));
-            cursor.close();
+            mMaxLuck = cursorMax.getInt(cursorMax.getColumnIndex(COLUMN_LUCK_MAX));
+            cursorMax.close();
         }
 
         if (mCurrentLuck + currentLuckGain > mMaxLuck) {
@@ -312,6 +398,223 @@ public class HeroDBHelper extends SQLiteOpenHelper {
             db.update(TABLE_NAME, contentValues, COLUMN_ID + " = ?", new String[]{heroID});
             db.close();
         }
+    }
+
+    // Luck potion use
+    public void useLuckPotion(String heroID) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT " + COLUMN_LUCK_CURRENT +
+                " FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + heroID, null);
+
+        Cursor cursorMax = db.rawQuery("SELECT " + COLUMN_LUCK_MAX +
+                " FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + heroID, null);
+
+        if (cursorMax.moveToFirst()) {
+            mMaxLuck = cursorMax.getInt(cursorMax.getColumnIndex(COLUMN_LUCK_MAX));
+            cursorMax.close();
+            cursor.close();
+        }
+
+        ContentValues contentValuesCurrent = new ContentValues();
+        contentValuesCurrent.put(COLUMN_LUCK_CURRENT, mMaxLuck + 1);
+        db.update(TABLE_NAME, contentValuesCurrent, COLUMN_ID + " = ?", new String[]{heroID});
+        db.close();
+
+        ContentValues contentValuesMax = new ContentValues();
+        contentValuesMax.put(COLUMN_LUCK_MAX, mMaxLuck + 1);
+        db.update(TABLE_NAME, contentValuesMax, COLUMN_ID + " = ?", new String[]{heroID});
+        db.close();
+    }
+
+    // Meals gain aud consumation
+    public int currentMeals(String heroID) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT " + COLUMN_MEALS +
+                " FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + heroID, null);
+
+        if (cursor.moveToFirst()) {
+            mMeals = cursor.getInt(cursor.getColumnIndex(COLUMN_MEALS));
+            cursor.close();
+        }
+
+        db.close();
+        return mMeals;
+    }
+
+    public void mealGain(String heroID, int mealGain) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT " + COLUMN_MEALS +
+                " FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + heroID, null);
+
+        if (cursor.moveToFirst()) {
+            mMeals = cursor.getInt(cursor.getColumnIndex(COLUMN_MEALS));
+            cursor.close();
+        }
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_MEALS, mMeals + mealGain);
+        db.update(TABLE_NAME, contentValues, COLUMN_ID + " = ?", new String[]{heroID});
+        db.close();
+    }
+
+    public void mealLoss(String heroID, int mealLoss) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT " + COLUMN_MEALS +
+                " FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + heroID, null);
+
+        if (cursor.moveToFirst()) {
+            mMeals = cursor.getInt(cursor.getColumnIndex(COLUMN_MEALS));
+            cursor.close();
+        }
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_MEALS, mMeals - mealLoss);
+        db.update(TABLE_NAME, contentValues, COLUMN_ID + " = ?", new String[]{heroID});
+        db.close();
+    }
+
+    public void consumeMeal(String heroID) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT " + COLUMN_MEALS +
+                " FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + heroID, null);
+
+        Cursor cursorStamina = db.rawQuery("SELECT " + COLUMN_STAMINA_CURRENT +
+                " FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + heroID, null);
+
+        Cursor cursorStaminaMax = db.rawQuery("SELECT " + COLUMN_STAMINA_MAX +
+                " FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + heroID, null);
+
+        if (cursor.moveToFirst()) {
+            mMeals = cursor.getInt(cursor.getColumnIndex(COLUMN_MEALS));
+            cursor.close();
+        }
+
+        if (cursorStamina.moveToFirst()) {
+            mCurrentStamina = cursorStamina.getInt(cursorStamina.getColumnIndex(COLUMN_STAMINA_CURRENT));
+            cursorStamina.close();
+        }
+
+        if (cursorStaminaMax.moveToFirst()) {
+            mMaxStamina = cursorStaminaMax.getInt(cursorStaminaMax.getColumnIndex(COLUMN_STAMINA_MAX));
+            cursorStaminaMax.close();
+        }
+
+        if (mCurrentStamina + 4 > mMaxStamina) {
+            ContentValues contentValuesCurrent = new ContentValues();
+            contentValuesCurrent.put(COLUMN_MEALS, mMeals - 1);
+            contentValuesCurrent.put(COLUMN_STAMINA_CURRENT, mMaxStamina);
+            db.update(TABLE_NAME, contentValuesCurrent, COLUMN_ID + " = ?", new String[]{heroID});
+            db.close();
+        } else {
+            ContentValues contentValuesCurrent = new ContentValues();
+            contentValuesCurrent.put(COLUMN_MEALS, mMeals - 1);
+            contentValuesCurrent.put(COLUMN_STAMINA_CURRENT, mCurrentStamina + 4);
+            db.update(TABLE_NAME, contentValuesCurrent, COLUMN_ID + " = ?", new String[]{heroID});
+            db.close();
+        }
+
+    }
+
+    // Are you lucky ?
+    public boolean isHeroLucky (String heroID) {
+
+        boolean gotLuck = false;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT " + COLUMN_LUCK_CURRENT +
+                " FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + heroID, null);
+
+        if (cursor.moveToFirst()) {
+            mCurrentLuck = cursor.getInt(cursor.getColumnIndex(COLUMN_LUCK_CURRENT));
+            cursor.close();
+        }
+
+        int firstDice = (int) ((6 * Math.random()) + 1);
+        int secondDice = (int) ((6 * Math.random()) + 1);
+
+        int fate = firstDice + secondDice;
+
+        if (fate <= mCurrentLuck) {
+
+            currentLuckLoss(heroID, 1);
+
+            gotLuck = true;
+
+        } else {
+
+            currentLuckLoss(heroID, 1);
+
+        }
+
+        return gotLuck;
+
+    }
+
+
+    // Current gold coins, gold coins gain and loss
+    public int currentGoldCoins(String heroID) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT " + COLUMN_GC +
+                " FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + heroID, null);
+
+        if (cursor.moveToFirst()) {
+            mCurrentGoldCoins = cursor.getInt(cursor.getColumnIndex(COLUMN_GC));
+            cursor.close();
+        }
+
+        db.close();
+        return mCurrentGoldCoins;
+    }
+
+    public void goldCoinsLoss(String heroID, int goldCoinsLoss) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT " + COLUMN_GC +
+                " FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + heroID, null);
+
+        if (cursor.moveToFirst()) {
+            mGoldCoins = cursor.getInt(cursor.getColumnIndex(COLUMN_GC));
+            cursor.close();
+        }
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_GC, mGoldCoins - goldCoinsLoss);
+        db.update(TABLE_NAME, contentValues, COLUMN_ID + " = ?", new String[]{heroID});
+        db.close();
+    }
+
+    public void goldCoinGain(String heroID, int goldCoinsGain) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT " + COLUMN_GC +
+                " FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + heroID, null);
+
+        if (cursor.moveToFirst()) {
+            mGoldCoins = cursor.getInt(cursor.getColumnIndex(COLUMN_GC));
+            cursor.close();
+        }
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_GC, mGoldCoins + goldCoinsGain);
+        db.update(TABLE_NAME, contentValues, COLUMN_ID + " = ?", new String[]{heroID});
+        db.close();
+    }
+
+
+    // Stuff3 (Talisman) gain
+    public String stuff3TalismanGain(String heroID, String talisman) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_STUFF3, talisman);
+        db.update(TABLE_NAME, contentValues, COLUMN_ID + " = ?", new String[]{heroID});
+        db.close();
+
+        return String.valueOf(R.string.talisman_stuff3);
     }
 
 

@@ -3,7 +3,7 @@ package com.kgames.james.nerdybook;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class RulesActivity extends AppCompatActivity {
+public class Rules extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

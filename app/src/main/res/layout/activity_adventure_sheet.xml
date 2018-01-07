@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context="com.kgames.james.nerdybook.AdventureSheetActivity">
+        tools:context="com.kgames.james.nerdybook.AdventureSheet">
 
         <android.support.v7.widget.Toolbar
             xmlns:android="http://schemas.android.com/apk/res/android"
@@ -345,7 +345,6 @@
                 android:text="@string/consume_luck_potion"/>
 
         </LinearLayout>
-
 
     </LinearLayout>
 
