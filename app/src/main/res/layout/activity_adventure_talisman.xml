@@ -43,7 +43,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/stats_loss1"
+                    android:id="@+id/stats_change1"
                     android:textSize="16sp"
                     android:textColor="@color/colorRed"
                     android:visibility="gone"/>
@@ -51,7 +51,15 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/stats_loss2"
+                    android:id="@+id/stats_change2"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorRed"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/stats_change3"
                     android:textSize="16sp"
                     android:textColor="@color/colorRed"
                     android:visibility="gone"/>
@@ -80,12 +88,10 @@
                     android:id="@+id/choice_4"
                     android:visibility="gone"/>
 
-                <TextView
+                <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/stats_loss3"
-                    android:textSize="16sp"
-                    android:textColor="@color/colorRed"
+                    android:id="@+id/choice_5"
                     android:visibility="gone"/>
 
             </LinearLayout>

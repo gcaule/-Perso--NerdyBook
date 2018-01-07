@@ -125,6 +125,7 @@
     <string name="hero_stamina_loss">Vous perdez %1$s points d\'ENDURANCE (il vous en reste %2$s).</string>
     <string name="hero_stamina_null">Vous perdez %1$s points d\'ENDURANCE (et il ne vous en reste plus).</string>
 
+    <string name="hero_luck_gain">Vous gagnez %1$s points de CHANCE (en tout, vous en avez %2$s).</string>
     <string name="hero_luck_loss">Vous perdez %1$s points de CHANCE (il vous en reste %2$s).</string>
     <string name="hero_luck_null">Vous perdez %1$s points de CHANCE (et il ne vous en reste plus).</string>
 
@@ -133,9 +134,20 @@
     <string name="hero_gold_coins_loss_null">Vous dépensez %1$s pièces d\'or (et il ne vous en reste plus).</string>
     <string name="hero_gold_coins_loss_full">Vous avez perdu toutes vos pièces d\'or.</string>
 
+    <string name="hero_meals_gain">Vous gagnez %1$s repas (en tout, vous en avez %2$s).</string>
+    <string name="hero_meals_gain_golden_apple">Vous gagnez 1 Pomme d\'Or, qui équivaut à 1 repas (en tout, vous en avez %1$s).</string>
+    <string name="hero_meals_loss_no_use">Vous utilisez %1$s repas, mais n\'en retirez aucun bénéfice (il vous en reste %2$s).</string>
+    <string name="hero_meals_loss">Vous utilisez %1$s repas (il vous en reste %2$s).</string>
+
     <string name="hero_stuff_gain">L\'équipement %1$s est ajouté à votre inventaire.</string>
 
     <string name="hero_death">Ok, ça n\'est certainement pas une bonne nouvelle...</string>
+
+    <!-- Hero Death -->
+
+    <string name="hero_death_title">Vous êtes mort.</string>
+    <string name="hero_death_text">Malgré votre opiniâtreté et votre héroïsme, vos choix vous ont conduit à mourrir, et à être oublié par les conteurs et troubadours de tous horizons.\nVotre corps ne sera jamais retrouvé et se décomposera lentement jusqu\'à destruction complète. A moins qu\'il ne soit mangé par quelque créature.\n\nVotre aventure se termine ici.</string>
+    <string name="hero_death_button">Je ferai mieux la prochaine fois.</string>
 
     <!-- Stuffs - Talisman of the Death -->
     <string name="talisman_stuff3">Talisman de la Mort</string>
