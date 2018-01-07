@@ -19,7 +19,7 @@ import com.kgames.james.nerdybook.Hero.HeroModel;
 
 import static android.view.View.GONE;
 
-public class AdventureSheetActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class AdventureSheet extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     Toolbar mToolbar;
     HeroDBHelper mHeroDBHelper;
@@ -70,7 +70,7 @@ public class AdventureSheetActivity extends AppCompatActivity implements Navigat
         Button luckPotionUse = findViewById(R.id.consume_luck_potion);
 
 
-        mHeroDBHelper = new HeroDBHelper(AdventureSheetActivity.this);
+        mHeroDBHelper = new HeroDBHelper(AdventureSheet.this);
         mCurrentHero = mHeroDBHelper.getCurrentHero(mHeroID);
 
         adventureName.setText(mCurrentHero.getAdventure());
@@ -158,14 +158,18 @@ public class AdventureSheetActivity extends AppCompatActivity implements Navigat
     }
 
 
-    // Drawer Menu
+    // Drawer Menu - back to adventure
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            Intent intent = new Intent(AdventureSheet.this, AdventureTalisman.class);
+            intent.putExtra("HeroID", String.valueOf(mHeroID));
+            intent.putExtra("CurrentChapter", mCurrentChapter);
+            intent.putExtra("TotalChapters", mTotalChapters);
+            startActivity(intent);
         }
     }
 
@@ -182,7 +186,7 @@ public class AdventureSheetActivity extends AppCompatActivity implements Navigat
         int id = item.getItemId();
 
         if (id == R.id.nav_adventure_sheet) {
-            Intent intent = new Intent(getApplicationContext(), AdventureSheetActivity.class);
+            Intent intent = new Intent(getApplicationContext(), AdventureSheet.class);
             intent.putExtra("HeroID", String.valueOf(mHeroID));
             intent.putExtra("CurrentChapter", mCurrentChapter);
             intent.putExtra("TotalChapters", mTotalChapters);
