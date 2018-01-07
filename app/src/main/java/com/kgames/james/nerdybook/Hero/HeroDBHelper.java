@@ -159,10 +159,20 @@ public class HeroDBHelper extends SQLiteOpenHelper {
             cursor.close();
         }
 
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(COLUMN_ABILITY_CURRENT, mCurrentAbility - currentAbilityLoss);
-        db.update(TABLE_NAME, contentValues, COLUMN_ID + " = ?", new String[]{heroID});
-        db.close();
+        if (mCurrentAbility - currentAbilityLoss <= 0) {
+
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(COLUMN_ABILITY_CURRENT, 0);
+            db.update(TABLE_NAME, contentValues, COLUMN_ID + " = ?", new String[]{heroID});
+            db.close();
+
+        } else if (mCurrentAbility - currentAbilityLoss > 0) {
+
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(COLUMN_ABILITY_CURRENT, mCurrentAbility - currentAbilityLoss);
+            db.update(TABLE_NAME, contentValues, COLUMN_ID + " = ?", new String[]{heroID});
+            db.close();
+        }
     }
 
     public void currentAbilityGain(String heroID, int currentAbilityGain) {
@@ -239,10 +249,20 @@ public class HeroDBHelper extends SQLiteOpenHelper {
             cursor.close();
         }
 
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(COLUMN_STAMINA_CURRENT, mCurrentStamina - currentStaminaLoss);
-        db.update(TABLE_NAME, contentValues, COLUMN_ID + " = ?", new String[]{heroID});
-        db.close();
+        if (mCurrentStamina - currentStaminaLoss <= 0) {
+
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(COLUMN_STAMINA_CURRENT, 0);
+            db.update(TABLE_NAME, contentValues, COLUMN_ID + " = ?", new String[]{heroID});
+            db.close();
+
+        } else if (mCurrentStamina - currentStaminaLoss > 0) {
+
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(COLUMN_STAMINA_CURRENT, mCurrentStamina - currentStaminaLoss);
+            db.update(TABLE_NAME, contentValues, COLUMN_ID + " = ?", new String[]{heroID});
+            db.close();
+        }
     }
 
     public void currentStaminaGain(String heroID, int currentStaminaGain) {
@@ -319,10 +339,21 @@ public class HeroDBHelper extends SQLiteOpenHelper {
             cursor.close();
         }
 
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(COLUMN_LUCK_CURRENT, mCurrentLuck - currentLuckLoss);
-        db.update(TABLE_NAME, contentValues, COLUMN_ID + " = ?", new String[]{heroID});
-        db.close();
+        if (mCurrentLuck - currentLuckLoss <= 0) {
+
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(COLUMN_LUCK_CURRENT, 0);
+            db.update(TABLE_NAME, contentValues, COLUMN_ID + " = ?", new String[]{heroID});
+            db.close();
+
+        } else if (mCurrentLuck - currentLuckLoss > 0) {
+
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(COLUMN_LUCK_CURRENT, mCurrentLuck - currentLuckLoss);
+            db.update(TABLE_NAME, contentValues, COLUMN_ID + " = ?", new String[]{heroID});
+            db.close();
+        }
+
     }
 
     public void currentLuckGain(String heroID, int currentLuckGain) {
@@ -399,18 +430,21 @@ public class HeroDBHelper extends SQLiteOpenHelper {
             cursor.close();
         }
 
-        ContentValues contentValuesCurrent = new ContentValues();
-        contentValuesCurrent.put(COLUMN_LUCK_CURRENT, mCurrentLuck - 1);
-        db.update(TABLE_NAME, contentValuesCurrent, COLUMN_ID + " = ?", new String[]{heroID});
-        db.close();
-
         int firstDice = (int) ((6 * Math.random()) + 1);
         int secondDice = (int) ((6 * Math.random()) + 1);
 
         int fate = firstDice + secondDice;
 
         if (fate <= mCurrentLuck) {
+
+            currentLuckLoss(heroID, 1);
+
             gotLuck = true;
+
+        } else {
+
+            currentLuckLoss(heroID, 1);
+
         }
 
         return gotLuck;

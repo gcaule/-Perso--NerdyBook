@@ -109,6 +109,15 @@
     <string name="consume_stamina_potion">Boire une potion de Vigueur</string>
     <string name="consume_luck_potion">Boire une potion de Bonne Fortune</string>
 
+    <!-- PlayLuck -->
+
+    <string name="play_luck_title">Tentez votre CHANCE !</string>
+
+    <string name="hero_play_luck">Je tente ma CHANCE !</string>
+
+    <string name="hero_luck_played">Vous avez tenté votre chance - il ne vous reste plus que %1$s points de CHANCE</string>
+    <string name="hero_luck_played_null">Vous avez tenté votre chance - il ne vous reste plus de points de CHANCE</string>
+
     <!-- Stats loss -->
     <string name="hero_ability_loss">Vous perdez %1$s points d\'HABILETE (il vous en reste %2$s).</string>
     <string name="hero_ability_null">Vous perdez %1$s points d\'HABILETE (et il ne vous en reste plus).</string>
@@ -116,16 +125,13 @@
     <string name="hero_stamina_loss">Vous perdez %1$s points d\'ENDURANCE (il vous en reste %2$s).</string>
     <string name="hero_stamina_null">Vous perdez %1$s points d\'ENDURANCE (et il ne vous en reste plus).</string>
 
-    <string name="hero_play_luck">Je tente ma CHANCE !</string>
-
     <string name="hero_luck_loss">Vous perdez %1$s points de CHANCE (il vous en reste %2$s).</string>
-    <string name="hero_luck_played">Vous avez tenté votre chance - il ne vous reste plus que %1$s points de CHANCE</string>
     <string name="hero_luck_null">Vous perdez %1$s points de CHANCE (et il ne vous en reste plus).</string>
 
     <string name="hero_gold_coins_gain">Vous gagnez %1$s pièces d\'or (en tout, vous en avez %2$s).</string>
     <string name="hero_gold_coins_loss">Vous dépensez %1$s pièces d\'or (il vous en reste %2$s).</string>
+    <string name="hero_gold_coins_loss_null">Vous dépensez %1$s pièces d\'or (et il ne vous en reste plus).</string>
     <string name="hero_gold_coins_loss_full">Vous avez perdu toutes vos pièces d\'or.</string>
-    <string name="hero_gold_coins_null">Vous dépensez %1$s pièces d\'or (et il ne vous en reste plus).</string>
 
     <string name="hero_stuff_gain">L\'équipement %1$s est ajouté à votre inventaire.</string>
 
@@ -166,6 +172,9 @@
     <string name="talisman_chapter36">Vous luttez de toutes vos forces contre la somnolence et vous parvenez à rompre le sortilège. En levant la tête, vous distinguez alors, dans le tronc du Saule, deux grands yeux verts qui vous fixent. Avant d\'avoir pu faire le moindre mouvement, les branches de l\'arbre en fureur vous attaquent. Il vous faut combattre le SAULE BIZARRE.</string>
     <string name="talisman_chapter36_choice1">Je vais en faire du bois de chauffage !</string>
 
+    <string name="talisman_chapter52">Un genou à terre, vous lancez la viande séchée à l\'animal en lui parlant doucement. La louve accepte votre cadeau tandis qu\'au même moment, une silhouette vêtue d\'une toge verte apparaît dans la clairière. C\'est un vieil homme à la longue barbe ; il tient un bâton en chêne dans une main et une faucille en argent dans l\'autre. Une couronne de gui lui enserre la tête. \" Je m\'appelle Wodeman, dit-il en souriant, je suis le Druide Gardien du Bocage Sacré. Mon amie Crinière de Neige vous remercie de la nourriture que vous lui avez offerte ; une si aimable générosité mérite récompense. La Bénédiction des Druides soit avec vous et puisse la Fortune vous sourire. \" La Bénédiction du Druide vous fait gagner 1 point de CHANCE. \" Vous avez l\'air fatigué, poursuit-il, tenez, prenez ceci. \" Il sort alors d\'une poche de sa togeune pomme d\'or et vous la donne. Ces pommes ont un extraordinaire pouvoir nutrtif et vous regagnerez 4 points d\'ENDURANCE lorsque vous la mangerez. Vous remerciez le Druide et vous reprenez votre chemin en abandonnant à contrecoeur la paix idyllique du Bocage Sacré.</string>
+    <string name="talisman_chapter52_choice1">Voilà pourquoi j\'adore les promenades en forêt.</string>
+
     <string name="talisman_chapter41">Avant que vous n\'ayez pu franchir la porte, un gros bloc de pierre s\'effondre sur le sol dans un fracas de tonnerre, obstruant complètement le passage. Malheureusement, vous ne pouvez interrompre votre élan et vous venez vous écraser contre cette énorme masse. Le choc est rude : il vous coûte 2 points d\'ENDURANCE. Quelque peu étourdi, vous vous relevez et vous constatez que l\'autre porte en arcade est également bloquée.</string>
     <string name="talisman_chapter41_choice1">Je n\'ai plus d\'autre choix que de tirer mon épée et d\'attendre qu\'apparaisse les nouveaux arrivants.</string>
 
@@ -177,6 +186,16 @@
     <string name="talisman_chapter63_choice1">Je vais vers le nord, à la rencontre des Elfes.</string>
     <string name="talisman_chapter63_choice2">Je grimpe sur une colline au sud pour affronter les Orques.</string>
     <string name="talisman_chapter63_choice3">Je continue à courir tout droit.</string>
+
+    <string name="talisman_chapter65">Bientôt la colline fait place à une lande grise et désolée qui s\'étends vers l\'ouest. Au bout d\'une demi-heure environ, un nuage de poussière s\'élève à quelque distance et un groupe d\'une vingtaine de cavaliers s\'avance vers vous dans un martèlement de sabots. Lorsqu\'ils s\'approchent, cependant, vous constatez qu\'il s\'agit en fait de cavalières : ce sont en effet des femmes-guerriers vêtues de cottes de mailles et de cuirasses cloutées. L\'air menaçant, elles forment alors un cercle autour de vous et leur cheftaine vous demande d\'un ton peu amène ce que vous faites ici, en bordure de la lande.</string>
+    <string name="talisman_chapter65_choice1">Je leur parle de ma quête.</string>
+    <string name="talisman_chapter65_choice2">Je leur dit que je viens d\'un autre monde.</string>
+    <string name="talisman_chapter65_choice3">Je prétends être le dernier survivant d\'une caravane que l\'on a attaqué.</string>
+    <string name="talisman_chapter65_choice4">Je prétends être sourd et muet.</string>
+    <string name="talisman_chapter65_choice5">Je leur demande de m\'escorter jusqu\'à Griseguilde sur Lande.</string>
+
+    <string name="talisman_chapter68">Vous vous précipitez vers les Orques en brandissant votre épée. Mais lorsque vous êtes sur eux, leur Capitaine, un monstre gigantesque aux dents jaunâtres, s\'élance à son tour et vous heurte de plein fouet. Vous perdez alors tous deux l\'équilibre et, trébuchant au bord du précipice, vous tombez au fond : votre unique consolation sera de ne pas avoir été le seul à mourir.</string>
+    <string name="talisman_chapter68_choice1">C\'est en effet une pensée réconfortante.</string>
 
     <string name="talisman_chapter70">Surprise, elle lève les sourcils. Tous les quatres vous regardent d\'un air soupçonneux. Puis, après un instant de silence, le prêtre se prononce à nouveau. \" C\'est la vérité, cette fis dit-il, et son coeur est pur. \" La Dame de Mailles baisse alors son arbalète. \" Qu\'allons-nous faire ? Les sorties sont bloquées et mon pouvoir ne me permet de téléporter au-dehors qu\'un seul d\'entre-nous \" , intervient l\'homme vêtu d\'or. Le chevalier à l\'épée blanche, un Paladin, parle à son tour : \" Dans ce cas, Sorcier, nous mourrons tous ensembles, dit-il gravement, et nous défendrons chèrement nos vies. \" \" Mais qu\'adviendra-t-il du Talisman ? demande aussitôt le Prêtre, peut-être ce guerrier a-t-il été envoyé par les dieux pour continuer notre mission ? \" Vous sentez que ces quatres personnages sont des êtres sincères et dévoués à une bonne cause.</string>
     <string name="talisman_chapter70_choice1">J\'attends d\'en apprendre davantage en espérant pouvoir les aider.</string>
@@ -199,24 +218,61 @@
     <string name="talisman_chapter134_choice3">Je cours vers les collines.</string>
     <string name="talisman_chapter134_choice4">Je me cache (le courage, c\'est survivre).</string>
 
+    <string name="talisman_chapter135">Alors que vous avancez précautionneusement, vous posez soudain le pied sur une brindille qui craque sous votre pas. Le lézard, un BASILIC GEANT, tourne aussitôt les yeux vers vous et votre corps soudain s\'alourdit. D\'un bond, vous plongez dans les broussailles, mais votre peau à déjà pris une couleur grise et il s\'en est fallu de peuque vous ne soyez changé en pierre par le regard du reptile. Le processus de pétrification, en effet, a été entamé et les fibres de vos muscles ont quelque peu souffert. Cette mésaventure vous coûte 1 point d\'HABILETE. Vous vous hâtez ensuite de vous frayez un chemin dans les sous-bois, laissant derrière vous le monstre apathique au regard mortel.</string>
+    <string name="talisman_chapter135_choice1">Je rejoinds le sentier un peu plus loin.</string>
+
     <string name="talisman_chapter148">Vous vous précipitez le long d\'une ravine et vous vous cachez dans une crevasse entre deux rochers. Une odeur de souffre se dégage de la pierre. Vous espérez que vos poursuivants ne vous retrouveront pas en dépit des traces que vous n\'avez pu éviter de laisser derrière vous, parmi les caillloux qui recouvrent le fond de la ravine. Bientôt, hélas, vous entendez des bruits caractéristiques ; ce sont les Orques qui flairent les alentours pour essayer de trouver votre piste. Et soudain, l\'un d\'eux pousse un cri : vous êtes découvert ! Vous vous hissez aussitôt hors de votre cachette et vous tirez votre épée mais la horde qui se rue sur vous vous bouscule sans que vous ayez eu le temps de vous défendre. Dans la mélée, l\'un des Orques vous arrache votre bourse et vos Pièces d\'Or se répandent alentours. Les monstrueuses créatures se disputent alors le butin tandis que les Elfes Noirs apparaissent au bord de la ravine. Les Orques ne les ont pas remarqué et les Elfes se ruent sur eux, les attaquant par surprise. Grâce à leur magie, ces derniers prennent rapidement le dessus et pendant que la bataille fait rage, vous ramassez votre bourse vide puis vous prenez la fuite, franchissant la colline et descendant vers la vallée qui s\'étend au-delà.</string>
     <string name="talisman_chapter148_choice1">Je n\'ai plus d\'argent, mais au moins je suis en vie.</string>
+
+    <string name="talisman_chapter159">Vous vous frayez un chemin dans l\'épaisse végétation, franchissant d\'abord la colline, puis descendant vers la vallée touffue qui s\'étend de l\'autre côté. Vous suivez alors un sentier orienté à l\'ouest, et vous marchez d\'un bon pas jusqu\'à ce que vous rencontriez, quelques centaines de mètres plus loin, un énorme lézard aux écailles brunes, doté de huit pattes. Le reptile se prélasse au soleil, la gueule entrouverte et vous distinguez nettement les longues dents pointues qui hérissent ses mâchoires. Vous pouvez tener votre chance et essayer de passer sans le réveiller, ou ne prendre aucun risque, quitter le sentier et traverser directement les sous-bois, en vous taillant un passage à coups d\'épée.</string>
+    <string name="talisman_chapter159_choice1">Je tente ma CHANCE !</string>
+    <string name="talisman_chapter159_choice2">Je coupe par les sous-bois.</string>
 
     <string name="talisman_chapter185">Soudain, vous vous retrouvez en plein soleil, debout au bord d\'un gouffre immense. C\'est sans doute là ce que les Croisés appelaient l\'Abyme. Tout autour de vous, le sol rocailleux est noir et craquelé, strié de crevasses et de fissures, et des vapeurs pestilentielles s\'élèvent des profondeurs du gouffre. Plus loin à l\'ouest, vous apercevez une chaîne de collines vertes, partiellement recouvertes de forêts touffues. A quelques centaines de mètres sur votre droite, une autre forêt s\'étend jusqu\'aux collines. Il est clair qu\'il vous faut marcher vers les collines pour atteindre Griseguilde, mais quel chemin allez-vous prendre ?</string>
     <string name="talisman_chapter185_choice1">Je vais traverser la forêt.</string>
     <string name="talisman_chapter185_choice2">Je préfère parcourir l\'étendue aride qui semble constituer la route la plus directe.</string>
 
     <string name="talisman_chapter203">Lorsque vous atteignez le fond de la vallée, vous découvrez un bassin où bouillonne une source. Vous avez si soif après une si longue marche et vous vous approchez de l\'eau dans laquelle trempe les branches d\'un vieux saule au tronc noueux. Presque aussitôt, vous vous sentez étrangement somnolent et vous vous rendez compte que vous êtes en train de tituber. Si vous n\'y prenez garde, vous risquez fort de tomber dans le bassin.</string>
-    <string name="talisman_chapter203_choice1">J\'ai eu de la chance.</string>
-    <string name="talisman_chapter203_choice2">On dirait que ce n\'est pas mon jour.</string>
+    <string name="talisman_chapter203_choice1">J\'ai eu de la chance !</string>
+    <string name="talisman_chapter203_choice2">Je n\'ai pas eu de chance...</string>
 
     <string name="talisman_chapter214">Alors que vous vous approchez des Elfes, vous voyez l\'un d\'eux faire un geste étrange. A votre grande horreur, vous vous rendez compte qu\'il est en train de vous jeter un sort et en effet, un instant plus tard, votre corps se raidit, vos mouvements deviennent difficiles, puis vous ne pouvez plus bouger du tout. Avec des rires cruels, les Elfes se précipitent aussitôt sur vous et vous ligotent bras et jambes. Ils vont vous emmener au fond de l\'Abyme et plus jamais vous ne reverrez la lumière du soleil. Votre quête s\'achève ici.</string>
     <string name="talisman_chapter214_choice1">Peut-être que je pourrais m\'échapper à un moment ou à un autre ?</string>
 
+    <string name="talisman_chapter218">Vous vous hâtez de quitter la clairière. Fort heureusement, la louve voulait simplement protéger ses petits. Vous poursuivez à présent votre chemin à travers les bois en direction des collines.</string>
+    <string name="talisman_chapter218_choice1">Bien, j\'adore les promenades en forêt.</string>
+
     <string name="talisman_chapter227">Vos jambes se font de plus en plus lourdes tandis que vous atteignez un passage entre deux collines. Vous avancez moins vite à présent et vous vous demandez combien de temps encore vous pourrez tenir cette allure. En regardant en arrière, vous êtes quelque peu soulagé de voir que les Elfes et les Orques se sont rencontrés et ont engagé bataille. Les Elfes Noirs font usage de magie, d\'étranges étincelles jaillissant de leurs doigts, et les Orques sont bientôt vaincus. Mais vous vous rendez compte qu\'il vous faut continuer à fuir, car le répit que vous avez gagné sera de courte durée et vous franchissez donc les collines pour descendre ensuite dans une vallée envahie de fougères.</string>
     <string name="talisman_chapter227_choice1">C\'est pas passé loin.</string>
 
+    <string name="talisman_chapter230">Vous avancez avec précaution dans la mare couverte d\'algues en décomposition et vous tendez la main à la vieille femme. Aussitôt, l\'eau se met à bouillonner et des tentacules s\'enroulent autour de vos jambes. La vieille femme dresse alors la tête puis émerge à moitié ; son corps n\'a cependant rien d\'humain ; c\'est en fait un grand monstre doté d\'un bec osseux et de huit tentacules qui surgit devant vous et vous attaque avec rage. Il vous faut combattre cette PIEUVRE DE VASE.</string>
+    <string name="talisman_chapter230_choice1">Je vais lui nouer ses tentacules ! Et la tuer !</string>
+
+    <string name="talisman_chapter232">Vous tirez votre épée et vous vous lancez à l\'attaque.</string>
+    <string name="talisman_chapter232_choice1">Que trépasse si je faiblis !</string>
+
     <string name="talisman_chapter247">Surpris, ils lèvent les sourcils en vous regardant tous quatre d\'un air incrédule. L\'homme vêtu d\'or se tourne alors vers le Prêtre à la tunique brodée d\'une croix et demande : \" Est-ce vrai ? \" Vous avez dit la vérite et n\'avez donc aucune raison de redouter le verdict du Prêtre qui fait usage de ses pouvoirs magiques pour lire dans vos pensées. \" Il dit vrai, en effet, assure le Prêtre, et son coeur est pur. \" La Dame de Maille abaisse aussitôt son arbalète , et va surveiller l\'entrée de la salle. \" Qu\'allons-nous faire à présent ? s\'inquiète l\'homme vêtu d\'or, les sorties sont obstruées et mes pouvoirs ne me permettent de téléporter au-dehors qu\'un seul d\'entre nous. Mais peut-être ce guerrier a-t-il été envoyé par les dieux pour achever notre quête ? \" Vous êtes sensible à la sincérité et à l\'abnégation de ces hommes.</string>
     <string name="talisman_chapter247_choice1">J\'attends d\'en apprendre davantage en espérant pouvoir les aider.</string>
+
+    <string name="talisman_chapter256">Vous pénétrez sous les feuillages sombres de la forêt et bientôt, vous arrivez dans une clairière. Vous vous figez alors sur place en voyant apparaître devant vous une énorme LOUVE blanche, presque aussi grande qu\'un poney; la LOUVE est en train de donner la tétée à deux petits. En vous apercevant, elle les repousse et se met à grogner, prête à bondir sur vous.</string>
+    <string name="talisman_chapter256_choice1">Je rebrousse chemin, mais héroïquement.</string>
+    <string name="talisman_chapter256_choice2">J\'offre à la LOUVE un peu de viande séchée.</string>
+    <string name="talisman_chapter256_choice3">Je l\'attaque !</string>
+
+    <string name="talisman_chapter267">Avançant avec précaution, vous parvenez à passer devant le BASILIC endormi sans qu\'il vous remarque. A un moment, ses paupières battent et une petite souris qui passait devant alors dans son champ de vision se change pierre : le lézard a le pouvoir de pétrifier les êtres vivants sur lesquels il pose son regard, vous l\'avez donc échappé belle !</string>
+    <string name="talisman_chapter267_choice1">C\'est ça le talent - je poursuis néanmoins ma route.</string>
+
+    <string name="talisman_chapter270">Le chemin s\'enfonce entre deux collines et descend au fond d\'un vallon humide et envahi de mousse. Vous arrivez bientôt devant une grande mare dont l\'eau est recouverte d\'algues en décomposition. Les branches d\'un marronier s\'étendent au-dessus de la mare, l\'abritant de son ombre. Vous entendez alors un cri plaintif et vous apercevez une vieille femme immergée dans l\'eau jusqu\'au cou. \" Au secours ! Je me noie ! hurle-t-elle, je suis prise dans les herbes ! \"</string>
+    <string name="talisman_chapter270_choice1">Je ne suis pas un animal, je vais lui porter secours.</string>
+    <string name="talisman_chapter270_choice2">Je l\'ignore et continue ma route, j\'ai un monde à sauver.</string>
+
+    <string name="talisman_chapter282">Vous escaladez la plus proche colline et vous parvenez à son sommet quelques instants avant que les Orques n\'arrivent jusqu\'à vous. Vous avez à peine eu le temps de reprendre votre souffle, mais heureusement, les Orques n\'ont pas grand sens de la discipline et ils ne parviennent pas à vous attaquer tous en même temps. Vous devrez donc les combattre un par un. Le troisième est apperemment leur chef : une brute énorme dotée de longs crocs jaunâtres et recourbés; il brandit un cimeterre au tranchant en dents de scies et c\'est le plus redoutable de vos trois adversaires.</string>
+    <string name="talisman_chapter282_choice1">Ne suis-je pas leur plus redoutable adversaire ? A l\'assaut !</string>
+
+    <string name="talisman_chapter319">Vous faites un effort de volonté pour essayer de vous éloigner du bassin, mais une voix apaisante vous suggère de vous laisser aller au sommeil. Vous entrez alors dans l\'eau fraîche, sans plus vous poser de questions: vous êtes en effet sous le charme d\'un SAULE BIZARRE qui bientôt vous frappe violemment de ses branches tandis que vous vous immergez dans l\'eau. Vous perdez d\'un seul coup 4 points d\'ENDURANCE, mais, si vous êtes toujours en vie, la douleur vous arrache soudain à la somnolence et vous vous hissez hors du bassin. Vous levez ensuite les yeux vers le saule et vous distinguez dans son tronc deux grands yeux verts qui vous fixent. Il vous faut combattre cet arbre.</string>
+    <string name="talisman_chapter319_choice1">Je vais en faire du bois de chauffage !</string>
+
+    <string name="talisman_chapter384">Vous vous frayez un chemin parmi les broussailles, mais les buissons d\'épines serrés les uns contre les autres rendent votre progression difficile. Bientôt vous êtes à bout de souffle et vos efforts vous ont donné faim ; il vous faut manger. Vous êtes cependant si épuisé que ce repas ne parvient pas à vous rendre de points d\'ENDURANCE.</string>
+    <string name="talisman_chapter384_choice1">C\'était génial - et maintenant ?</string>
 
 </resources>
